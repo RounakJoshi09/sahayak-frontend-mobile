@@ -21,7 +21,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(
-        "assets/videos/animated_medium20190927-27720-ks2ink.mp4")..setLooping(true)
+        "assets/videos/animated_medium20190927-27720-ks2ink.mp4")
+      ..setLooping(true)
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
@@ -67,12 +68,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                       )
                     ],
                   ),
-                  CustomButton(
-                    height: 40,
-                    width: 40,
-                    borderRadius: 7,
-                    color: const Color.fromARGB(255, 209, 157, 157),
-                  )
+                  CustomContainer(height: 40, width: 40),
                 ],
               ),
               SizedBox(
