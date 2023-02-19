@@ -20,10 +20,10 @@ class CategoriesWidget extends StatelessWidget {
       decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 127, 82, 234),
-              Color.fromARGB(255, 125, 136, 230)
-              // Color.fromARGB(255, 7, 190, 148),
-              // Color.fromARGB(255, 60, 209, 174)
+              // Color.fromARGB(255, 127, 82, 234),
+              // Color.fromARGB(255, 125, 136, 230)
+              Color.fromARGB(255, 7, 190, 148),
+              Color.fromARGB(255, 60, 209, 174)
               // Color.fromARGB(248, 11, 212, 206),
               // Color.fromARGB(248, 34, 241, 238),
             ],

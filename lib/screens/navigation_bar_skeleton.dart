@@ -47,13 +47,13 @@ class _NavBarSkeleton extends State<NavBarSkeleton> {
 
             /// Likes
             DotNavigationBarItem(
-              icon: const Icon(Icons.favorite),
+              icon: const Icon(Icons.note_alt),
               selectedColor: const Color(0xff73544C),
             ),
 
             /// Search
             DotNavigationBarItem(
-              icon: const Icon(Icons.search),
+              icon: const Icon(Icons.calendar_month),
               selectedColor: const Color(0xff73544C),
             ),
 
@@ -69,4 +69,4 @@ class _NavBarSkeleton extends State<NavBarSkeleton> {
   }
 }
 
-enum _SelectedTab { home, favorite, search, person }
+enum _SelectedTab { home, apoointment, reminder, profile }
