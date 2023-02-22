@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
-import 'package:sahayak_application/utils/widgets/categories_widget.dart';
-import 'package:sahayak_application/utils/widgets/custom_button.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
+import 'package:sahayak_application/utils/widgets/hosp_card_widget.dart';
 import 'package:sahayak_application/utils/widgets/search_bar.dart';
 import 'package:video_player/video_player.dart';
 
@@ -86,48 +85,19 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     child: VideoPlayer(_controller),
                   )),
               SizedBox(
-                height: height * 0.005,
+                height: height * 0.01,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Categories",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(160, 85, 88, 88)),
+              CustomContainer(
+                height: height * 0.15,
+                width: width,
+                widget: Center(
+                  child: ElevatedButton(
+                    child: const Text("Book Now"),
+                    onPressed: () {},
                   ),
-                  TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "View All",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 139, 154, 239)),
-                      ))
-                ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CategoriesWidget(
-                    icon: Icons.heart_broken,
-                    title: "Cardiology",
-                  ),
-                  CategoriesWidget(
-                    icon: Icons.psychology,
-                    title: "psychology",
-                  ),
-                  CategoriesWidget(
-                    icon: Icons.coronavirus,
-                    title: "Neurology",
-                  ),
-                  CategoriesWidget(
-                    icon: Icons.elderly,
-                    title: "Orthopaedic",
-                  ),
-                ],
-              ),
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -139,7 +109,12 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         color: Color.fromARGB(160, 85, 88, 88)),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (_) => ViewAllWidget()));
+                      },
                       child: const Text(
                         "View All",
                         style: TextStyle(
@@ -147,8 +122,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                       ))
                 ],
               ),
-              Container(
-                height: 180,
+              SizedBox(
+                height: height * 0.235,
                 child: GridView.builder(
                   padding: EdgeInsets.zero, // set padding to zero
                   shrinkWrap: true,
@@ -159,44 +134,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     mainAxisSpacing: 4.0,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                        decoration: const BoxDecoration(
-                            boxShadow: [],
-                            color: Color.fromARGB(211, 198, 239, 240),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset(
-                              "assets/images/6634380.jpg",
-                              height: height * 0.15,
-                              width: width * 0.4,
-                              fit: BoxFit.fill,
-                            ),
-                            const Text(
-                              "Ruby Hall Clinic",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(61, 60, 60, 0.757),
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.star,
-                                  color: Color.fromARGB(255, 242, 224, 58),
-                                  size: 20,
-                                ),
-                                Text("5.0"),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text("(25 reviews)"),
-                              ],
-                            )
-                          ],
-                        ));
+                    return HospCardWidget();
                   },
                 ),
               ),
