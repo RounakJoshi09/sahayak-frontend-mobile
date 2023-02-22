@@ -1,5 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
+import 'package:sahayak_application/screens/register_screen.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_button.dart';
 import 'package:sahayak_application/utils/widgets/textfield_widget.dart';
@@ -44,11 +47,14 @@ class LoginScreen extends StatelessWidget {
               height: 20,
             ),
             CustomButton(
-              height: height * 0.08,
+              height: height * 0.07,
               width: width * 0.45,
               borderRadius: 8.0,
               title: "Login",
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const NavBarSkeleton())),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NavBarSkeleton())),
             ),
             const SizedBox(
               height: 20,
@@ -64,7 +70,10 @@ class LoginScreen extends StatelessWidget {
                       color: Colors.black54),
                 ),
                 TextButton(
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const NavBarSkeleton())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterScreen())),
                     child: const Text(
                       "Register Here",
                       style: TextStyle(

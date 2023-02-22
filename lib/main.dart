@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sahayak_application/screens/login_screen.dart';
-import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 
 void main() {
   runApp(const SahayakApp());
@@ -11,7 +11,7 @@ class SahayakApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginScreen(),
     );
