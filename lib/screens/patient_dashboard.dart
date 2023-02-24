@@ -97,7 +97,6 @@ class _PatientDashboardState extends State<PatientDashboard> {
                   ),
                 ),
               ),
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
