@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../utils/helper/helper_functions.dart';
 import '../utils/widgets/custom_button.dart';
+import '../utils/widgets/state_dropdown.dart';
 import '../utils/widgets/textfield_widget.dart';
 import 'navigation_bar_skeleton.dart';
 
@@ -28,9 +29,7 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: height * 0.06
-                ),
+                SizedBox(height: height * 0.06),
                 const Text(
                   "Register",
                   style: TextStyle(
@@ -42,19 +41,23 @@ class RegisterScreen extends StatelessWidget {
                   height: 30,
                 ),
                 TextfieldWidget(
-                    title: "Username",
+                    title: "Your Name",
                     icon: Icons.person,
                     controller: usernameController),
                 const SizedBox(
                   height: 10,
                 ),
                 TextfieldWidget(
-                    title: "Email",
-                    icon: Icons.email,
+                    title: "Age",
+                    icon: Icons.person,
                     controller: emailController),
                 const SizedBox(
                   height: 10,
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                getStateDropdown(context),
                 TextfieldWidget(
                     title: "Email",
                     icon: Icons.email,
@@ -63,15 +66,15 @@ class RegisterScreen extends StatelessWidget {
                   height: 10,
                 ),
                 TextfieldWidget(
-                    title: "Email",
-                    icon: Icons.email,
+                    title: "Mobile Number",
+                    icon: Icons.phone,
                     controller: emailController),
                 const SizedBox(
                   height: 10,
                 ),
                 TextfieldWidget(
-                    title: "Email",
-                    icon: Icons.email,
+                    title: "Username",
+                    icon: Icons.person,
                     controller: emailController),
                 const SizedBox(
                   height: 10,
