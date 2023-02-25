@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/register_screen_controller.dart';
-import 'package:sahayak_application/models/States.dart';
+import 'package:sahayak_application/models/City.dart';
 import 'package:sahayak_application/utils/TextStyle.dart';
 
-Widget getStateDropdown(BuildContext context, List<States> stateList) {
+Widget getCityDropdown(BuildContext context, List<City> cityList) {
   RegisterScreenController.registerScreenController
-      .setState(stateList[0].stateName);
+      .setCity(cityList[0].cityName);
   RegisterScreenController.registerScreenController
-      .setStateId(stateList[0].stateId);
+      .setCityId(cityList[0].cityId);
 
   return Obx(
     () => Container(
@@ -17,13 +17,13 @@ Widget getStateDropdown(BuildContext context, List<States> stateList) {
       child: DropdownButton(
         elevation: 0,
         isExpanded: true,
-        items: stateList.map((item) {
+        items: cityList.map((item) {
           return DropdownMenuItem<String>(
-            value: item.stateName,
+            value: item.cityName,
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                item.stateName.toUpperCase(),
+                item.cityName.toUpperCase(),
                 style: subtitle2(color: Colors.grey),
               ),
             ),
@@ -31,21 +31,21 @@ Widget getStateDropdown(BuildContext context, List<States> stateList) {
         }).toList(),
         style: subtitle2(color: Colors.grey),
         onChanged: (value) {
-          RegisterScreenController.registerScreenController.setState(value!);
+          RegisterScreenController.registerScreenController.setCity(value!);
           RegisterScreenController.registerScreenController
-              .setStateId(getStateCode(stateList, value));
+              .setCityId(getCityCode(cityList, value));
         },
-        value: RegisterScreenController.registerScreenController.getState(),
+        value: RegisterScreenController.registerScreenController.getCity(),
       ),
     ),
   );
 }
 
-String getStateCode(List<States> states, String stateName) {
+String getCityCode(List<City> cities, String cityName) {
   String code = "";
-  for (var state in states) {
-    if (state.stateName == stateName) {
-      code = state.stateId;
+  for (var city in cities) {
+    if (city.cityName == cityName) {
+      code = city.cityId;
       break;
     }
   }

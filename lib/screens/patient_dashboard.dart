@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
 import 'package:sahayak_application/utils/widgets/hosp_card_widget.dart';
@@ -45,8 +46,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Welcome back",
                       style: TextStyle(
                           fontSize: 14,
@@ -54,8 +55,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                           color: Color.fromARGB(66, 53, 47, 47)),
                     ),
                     Text(
-                      "Jacob James",
-                      style: TextStyle(
+                      MyStorage.readFullName,
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w900,
                           color: Color.fromARGB(222, 49, 47, 47)),
