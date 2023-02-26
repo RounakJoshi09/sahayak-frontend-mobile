@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sahayak_application/controllers/state_manager_controller.dart';
+import 'package:sahayak_application/models/Response.dart';
 import 'package:sahayak_application/models/TimeSlot.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/calender_widget.dart';
@@ -12,7 +14,8 @@ import '../utils/widgets/doctors_card_widget.dart';
 
 class AppointmentScreen extends StatelessWidget {
   Doctor doctor;
-  AppointmentScreen(this.doctor);
+  String hospitalId;
+  AppointmentScreen(this.doctor, this.hospitalId);
 
   final Helperfunction _helperfunction = Helperfunction();
   final StateManagerController _stateManagerController =
@@ -137,25 +140,35 @@ class AppointmentScreen extends StatelessWidget {
                                 return ListView.builder(
                                     itemCount:
                                         snapshot.data!.timeSlotList.length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       TimeSlot timeSlot =
                                           snapshot.data!.timeSlotList[index];
-                                      return
-                                          // controller.timeSlotsCount == 1
-                                          //     ?
-                                          Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                            width: width * 0.8,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(8)),
-                                              color: Color.fromARGB(
-                                                  255, 236, 237, 237),
-                                            ),
-                                            child: TextButton(
+                                      return InkWell(
+                                        onTap: () {
+                                          controller.index.value = index;
+                                          controller.selectedSlotStart =
+                                              timeSlot.slotStart;
+                                          controller.selectedSlotEnd =
+                                              timeSlot.slotEnd;
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Obx(
+                                            () => Container(
+                                              width: width * 0.8,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(8)),
+                                                  color:
+                                                      controller.index.value ==
+                                                              index
+                                                          ? Color.fromARGB(
+                                                              248, 11, 212, 206)
+                                                          : Color.fromRGBO(236,
+                                                              237, 237, 1)),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Column(
                                                   children: [
                                                     Text(
@@ -164,7 +177,7 @@ class AppointmentScreen extends StatelessWidget {
                                                           color: Colors.black),
                                                     ),
                                                     const SizedBox(
-                                                      height: 5,
+                                                      height: 10,
                                                     ),
                                                     Text(
                                                       "${timeSlot.totalAppointmentsAllowed} Appointment Allowed",
@@ -173,18 +186,11 @@ class AppointmentScreen extends StatelessWidget {
                                                     ),
                                                   ],
                                                 ),
-                                                onPressed: () async {
-                                                  await controller
-                                                      .getTimeSlots();
-                                                })),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       );
-                                      // : const ListTile(
-                                      //     title: Center(
-                                      //         child:
-                                      //             Text("10:00 - 11:00 Am")),
-                                      //     tileColor: Color.fromARGB(
-                                      //         255, 236, 237, 237),
-                                      //   );
                                     });
                               })),
                     );
@@ -198,7 +204,16 @@ class AppointmentScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(top: 0, bottom: 8, left: 8, right: 8),
         child: GestureDetector(
-          onTap: (() => ShowConfirmation(context)),
+          onTap: (() async {
+            CustomResponse customResponse = await StateManagerController
+                .stateManagerController
+                .bookAppointment(doctor, hospitalId);
+            if (customResponse.statusCode == 200) {
+              ShowConfirmation(context, doctor);
+            } else {
+              Helperfunction.showToast(customResponse.message);
+            }
+          }),
           child: Container(
             height: height * 0.08,
             width: width * 0.8,

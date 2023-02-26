@@ -1,11 +1,16 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:sahayak_application/controllers/state_manager_controller.dart';
+import 'package:sahayak_application/models/Doctor.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_button.dart';
+import 'package:intl/intl.dart';
 
-Future ShowConfirmation(BuildContext context) async {
+Future ShowConfirmation(BuildContext context, Doctor doctor) async {
   var height = Helperfunction().getHeight(context);
   var width = Helperfunction().getWidth(context);
+  DateTime appointmentDate =
+      StateManagerController.stateManagerController.appointmentDate.value;
   showDialog(
       builder: (context) {
         return AlertDialog(
@@ -31,8 +36,8 @@ Future ShowConfirmation(BuildContext context) async {
                   SizedBox(
                     height: height * 0.01,
                   ),
-                  const Text(
-                    "Your appointment with Dr. Dinesh Mehta is confirmed.",
+                  Text(
+                    "Your appointment with Dr. ${doctor.fullName} is confirmed.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 15,
@@ -42,29 +47,29 @@ Future ShowConfirmation(BuildContext context) async {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 9.0, bottom: 9, left: 8, right: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Booking ID",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 108, 107, 107)),
-                        ),
-                        Text(
-                          "#A806513",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 23, 22, 22)),
-                        )
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(
+                  //       top: 9.0, bottom: 9, left: 8, right: 8),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: const [
+                  //       Text(
+                  //         "Booking ID",
+                  //         style: TextStyle(
+                  //             fontSize: 16,
+                  //             fontWeight: FontWeight.w500,
+                  //             color: Color.fromARGB(255, 108, 107, 107)),
+                  //       ),
+                  //       Text(
+                  //         "#A806513",
+                  //         style: TextStyle(
+                  //             fontSize: 16,
+                  //             fontWeight: FontWeight.w500,
+                  //             color: Color.fromARGB(255, 23, 22, 22)),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                   Container(
                     height: 0.9,
                     width: 800,
@@ -75,8 +80,8 @@ Future ShowConfirmation(BuildContext context) async {
                         top: 9.0, bottom: 9, left: 8, right: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Date",
                           style: TextStyle(
                               fontSize: 16,
@@ -84,8 +89,11 @@ Future ShowConfirmation(BuildContext context) async {
                               color: Color.fromARGB(255, 108, 107, 107)),
                         ),
                         Text(
-                          "15 Feb,2022 Monday",
-                          style: TextStyle(
+                          DateFormat.yMMMEd()
+                              .format(
+                                  DateTime.parse(appointmentDate.toString()))
+                              .toString(),
+                          style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Color.fromARGB(255, 23, 22, 22)),
@@ -103,17 +111,19 @@ Future ShowConfirmation(BuildContext context) async {
                         top: 9.0, bottom: 9, left: 8, right: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Time",
+                      children: [
+                        const Text(
+                          "From",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Color.fromARGB(255, 108, 107, 107)),
                         ),
                         Text(
-                          "12:00 AM",
-                          style: TextStyle(
+                          StateManagerController
+                              .stateManagerController.selectedSlotStart
+                              .toString(),
+                          style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Color.fromARGB(255, 23, 22, 22)),
@@ -121,8 +131,39 @@ Future ShowConfirmation(BuildContext context) async {
                       ],
                     ),
                   ),
+
                   SizedBox(
                     height: height * 0.02,
+                  ),
+                  Container(
+                    height: 0.9,
+                    width: 800,
+                    color: const Color.fromARGB(255, 135, 135, 135),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 9.0, bottom: 9, left: 8, right: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "To",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 108, 107, 107)),
+                        ),
+                        Text(
+                          StateManagerController
+                              .stateManagerController.selectedSlotEnd
+                              .toString(),
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 23, 22, 22)),
+                        )
+                      ],
+                    ),
                   ),
                   CustomButton(
                     height: height * 0.05,

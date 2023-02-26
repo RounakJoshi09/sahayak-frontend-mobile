@@ -134,11 +134,11 @@ class CalendarPage2 extends StatelessWidget {
                 color: Colors.red,
               ),
               Text("Unavailable"),
-              Icon(
-                Icons.circle,
-                color: Colors.green,
-              ),
-              Text("Available"),
+              // Icon(
+              //   Icons.circle,
+              //   color: Colors.green,
+              // ),
+              // Text("Available"),
               Icon(
                 Icons.circle,
                 color: Colors.orangeAccent,
