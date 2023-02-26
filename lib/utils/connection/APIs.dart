@@ -24,4 +24,8 @@ class Sahayak {
   static String getDoctorByHospitalId(String hospitalId) {
     return "$base_url/hospitalDoctor/$hospitalId";
   }
+
+  static String getDoctorsSchedule(String doctorId) {
+    return "$base_url/doctorSchedule/$doctorId";
+  }
 }

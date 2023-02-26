@@ -68,7 +68,17 @@ class AppointmentScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(160, 85, 88, 88)),
                 ),
-                CalendarPage2(),
+                FutureBuilder(
+                  future: StateManagerController.stateManagerController
+                      .fetchLeaveDays(doctor.id),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return CalendarPage2(
+                        absentDates: snapshot.data!.leaveDates);
+                  },
+                ),
                 SizedBox(
                   height: height * 0.025,
                 ),

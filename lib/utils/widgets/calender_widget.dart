@@ -25,21 +25,8 @@ class CalendarPage2 extends StatelessWidget {
     DateTime(2020, 11, 22),
     DateTime(2020, 11, 23),
   ];
-
-  List<DateTime> absentDates = [
-    DateTime(2023, 2, 2),
-    DateTime(2023, 2, 3),
-    DateTime(2023, 2, 4),
-    DateTime(2023, 2, 5),
-    DateTime(2023, 2, 6),
-    DateTime(2023, 2, 7),
-    DateTime(2020, 11, 16),
-    DateTime(2020, 11, 17),
-    DateTime(2020, 11, 18),
-    DateTime(2020, 11, 19),
-    DateTime(2020, 11, 20),
-  ];
-
+  List<DateTime> absentDates;
+  CalendarPage2({required this.absentDates});
   final DateTime _currentDate2 = DateTime.now();
   DateTime? appointmentDate;
   static Widget _presentIcon(String day) => CircleAvatar(
@@ -61,16 +48,6 @@ class CalendarPage2 extends StatelessWidget {
         ),
       );
 
-  static Widget _selectedDate(String day) => CircleAvatar(
-        backgroundColor: Colors.pinkAccent,
-        child: Text(
-          day,
-          style: const TextStyle(
-            color: Colors.black,
-          ),
-        ),
-      );
-
   final EventList<Event> _markedDateMap = EventList<Event>(
     events: {},
   );
@@ -83,18 +60,18 @@ class CalendarPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     var len = min(absentDates.length, presentDates.length);
     cHeight = MediaQuery.of(context).size.height;
-    for (int i = 0; i < len; i++) {
-      _markedDateMap.add(
-        presentDates[i],
-        Event(
-          date: presentDates[i],
-          title: 'Event 5',
-          icon: _presentIcon(
-            presentDates[i].day.toString(),
-          ),
-        ),
-      );
-    }
+    // for (int i = 0; i < len; i++) {
+    //   _markedDateMap.add(
+    //     presentDates[i],
+    //     Event(
+    //       date: presentDates[i],
+    //       title: 'Event 5',
+    //       icon: _presentIcon(
+    //         presentDates[i].day.toString(),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     for (int i = 0; i < len; i++) {
       _markedDateMap.add(
