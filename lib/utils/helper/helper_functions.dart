@@ -22,4 +22,22 @@ class Helperfunction {
       timeInSecForIosWeb: 1,
     );
   }
+
+  static String getDateString(DateTime date) {
+    String dateString = "";
+    dateString += "${date.year}-";
+    if (date.month < 10) {
+      dateString += "0${date.month}-";
+    } else {
+      dateString += "${date.month}-";
+    }
+
+    if (date.day < 10) {
+      dateString += "0${date.day}";
+    } else {
+      dateString += "${date.day}";
+    }
+
+    return dateString;
+  }
 }

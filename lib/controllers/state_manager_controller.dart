@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/models/LeaveDays.dart';
 import 'package:http/http.dart' as http;
+import 'package:sahayak_application/models/TimeSlot.dart';
+import 'package:sahayak_application/utils/helper/helper_functions.dart';
 
 import '../utils/connection/APIs.dart';
 
@@ -59,6 +61,29 @@ class StateManagerController extends GetxController {
             jsonData['data'][0]['leave_days'] as List<dynamic>);
       } else {
         throw Exception('Failed to load');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<TimeSlotList> fetchTimeSlotByDoctorIdAndDate(
+      String doctorId, DateTime date) async {
+    try {
+      String currentDate = Helperfunction.getDateString(date);
+      debugPrint(Sahayak.getDoctorsTimeSlot(doctorId, currentDate));
+      final response = await http.get(
+        Uri.parse(Sahayak.getDoctorsTimeSlot(doctorId, currentDate)),
+      );
+      debugPrint(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        var jsonData = jsonDecode(response.body);
+        debugPrint(jsonData.toString());
+        return TimeSlotList.fromJson(jsonData['data'] as List<dynamic>);
+      } else {
+        Helperfunction.showToast("Appointments Slots Not Found");
+        return TimeSlotList([]);
       }
     } catch (e) {
       debugPrint(e.toString());

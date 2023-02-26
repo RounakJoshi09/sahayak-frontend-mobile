@@ -28,4 +28,8 @@ class Sahayak {
   static String getDoctorsSchedule(String doctorId) {
     return "$base_url/doctorSchedule/$doctorId";
   }
+
+  static String getDoctorsTimeSlot(String doctorId, String date) {
+    return "$base_url/doctorTimeSlot?doctor_id=$doctorId&date=$date";
+  }
 }
