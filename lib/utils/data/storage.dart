@@ -35,11 +35,17 @@ class MyStorage {
     box.write('state_id', stateId);
   }
 
+  static void setIsLogin(bool isLogin) {
+    box.write('is_login', isLogin);
+  }
+
   static get readFirstName => box.read('first_name');
   static get readLastName => box.read('last_name');
   static get readEmail => box.read('email');
   static get readMobileNumber => box.read('mobile');
   static get readId => box.read('id');
+  static get cityId => box.read('city_id');
   static get readFullName =>
       box.read('first_name') + " " + box.read('last_name');
+  static get readisLogin => box.read('is_login');
 }

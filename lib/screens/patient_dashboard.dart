@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sahayak_application/controllers/DashboardController.dart';
 import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
@@ -118,20 +120,37 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     ))
               ],
             ),
-            GridView.builder(
-              padding: EdgeInsets.zero, // set padding to zero
-              shrinkWrap: true,
-              itemCount: 6,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 4.0,
-                mainAxisSpacing: 4.0,
-              ),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return HospCardWidget();
+            GetBuilder<DashboardController>(
+              init: DashboardController(),
+              builder: (controller) {
+                return FutureBuilder(
+                  future: controller.fetchHospitalsByCityId(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return GridView.builder(
+                      padding: EdgeInsets.zero, // set padding to zero
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.hospitalList.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 4.0,
+                        mainAxisSpacing: 4.0,
+                      ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return HospCardWidget(
+                            snapshot.data!.hospitalList[index]);
+                      },
+                    );
+                  },
+                );
               },
-            ),
+            )
           ],
         ),
       ),

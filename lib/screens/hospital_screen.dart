@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sahayak_application/models/Hospital.dart';
 import 'package:sahayak_application/screens/appointment_screen.dart';
+import 'package:sahayak_application/screens/hospital_doctors_screen.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 
+import '../utils/constants.dart';
+
 class HospitalScreen extends StatelessWidget {
-  HospitalScreen({super.key});
+  Hospital hospital;
+  HospitalScreen(this.hospital);
 
   final Helperfunction _helperfunction = Helperfunction();
   @override
@@ -23,6 +28,10 @@ class HospitalScreen extends StatelessWidget {
           color: const Color.fromARGB(248, 11, 212, 206),
           child: Stack(
             children: [
+              Positioned(
+                  top: 0,
+                  child: Image.network(
+                      base_url + "/download/${hospital.imageId}")),
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -52,9 +61,9 @@ class HospitalScreen extends StatelessWidget {
                         SizedBox(
                           height: height * 0.02,
                         ),
-                        const Text(
-                          "Ruby Hall Clinic",
-                          style: TextStyle(
+                        Text(
+                          hospital.hospitalName,
+                          style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
                             color: Color.fromARGB(255, 30, 27, 27),
@@ -63,25 +72,25 @@ class HospitalScreen extends StatelessWidget {
                         SizedBox(
                           height: height * 0.01,
                         ),
-                        Row(
-                          children: const [
-                            Text(
-                              "4.5",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(255, 44, 43, 43),
-                              ),
-                            ),
-                            Icon(
-                              Icons.star,
-                              color: Color.fromARGB(255, 229, 213, 67),
-                            )
-                          ],
-                        ),
-                        const Text(
-                          "Hospital in Pune, Maharashtra",
-                          style: TextStyle(
+                        // Row(
+                        //   children: const [
+                        //     Text(
+                        //       "4.5",
+                        //       style: TextStyle(
+                        //         fontSize: 14,
+                        //         fontWeight: FontWeight.w400,
+                        //         color: Color.fromARGB(255, 44, 43, 43),
+                        //       ),
+                        //     ),
+                        //     Icon(
+                        //       Icons.star,
+                        //       color: Color.fromARGB(255, 229, 213, 67),
+                        //     )
+                        //   ],
+                        // ),
+                        Text(
+                          "Hospital in ${hospital.cityName.toUpperCase()}, ${hospital.stateName.toUpperCase()}",
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             color: Color.fromARGB(255, 44, 43, 43),
@@ -163,9 +172,9 @@ class HospitalScreen extends StatelessWidget {
                                 SizedBox(
                                   height: height * 0.03,
                                 ),
-                                const Text(
-                                  "An institution that is built, staffed, and equipped for the diagnosis of disease; for the treatment, both medical and surgical, of the sick and the injured; and for their housing during this process.",
-                                  style: TextStyle(
+                                Text(
+                                  hospital.description,
+                                  style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w400,
                                       color: Color.fromARGB(255, 63, 63, 63)),
@@ -187,7 +196,12 @@ class HospitalScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 0, bottom: 8, left: 8, right: 8),
         child: GestureDetector(
           onTap: (() => Navigator.push(
-              context, MaterialPageRoute(builder: (_) => AppointmentScreen()))),
+              context,
+              MaterialPageRoute(
+                  builder: (_) => HospitalsDoctorScreen(
+                        hospitalId: hospital.id,
+                        hospitalName: hospital.hospitalName,
+                      )))),
           child: Container(
             height: height * 0.08,
             width: width * 0.8,

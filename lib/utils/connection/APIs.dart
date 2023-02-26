@@ -16,4 +16,12 @@ class Sahayak {
   static String loginPatient() {
     return "$base_url/api/patient/login";
   }
+
+  static String getHospitalByCityId(String cityId) {
+    return "$base_url/api/hospital/cityHospital?city_id=$cityId";
+  }
+
+  static String getDoctorByHospitalId(String hospitalId) {
+    return "$base_url/hospitalDoctor/$hospitalId";
+  }
 }

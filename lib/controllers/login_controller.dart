@@ -43,6 +43,7 @@ class LoginController extends GetxController {
         MyStorage.setStateId(jsonData['stateId']);
         MyStorage.setCityId(jsonData['cityId']);
         MyStorage.setId(jsonData['id']);
+        MyStorage.setIsLogin(true);
         return CustomResponse(
             message: "Looged In Successfully", statusCode: 200);
       } else {
