@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/models/Response.dart';
 import 'package:sahayak_application/utils/connection/APIs.dart';
-import 'package:http/http.dart' as http;
 import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:dio/dio.dart';
 
@@ -12,7 +9,6 @@ class LoginController extends GetxController {
   var dio = Dio();
   Future<CustomResponse> loginUser(String mobileNo, String password) async {
     try {
-      print(Sahayak.loginPatient());
       Map<String, dynamic> data = {
         "phoneNo": mobileNo,
         "password": password,

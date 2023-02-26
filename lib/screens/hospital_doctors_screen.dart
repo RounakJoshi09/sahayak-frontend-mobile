@@ -1,6 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sahayak_application/controllers/doctor_controller.dart';
 import 'package:sahayak_application/models/Doctor.dart';
 
@@ -10,7 +10,7 @@ class HospitalsDoctorScreen extends StatelessWidget {
   String hospitalId;
   String hospitalName;
   DoctorController doctorController = DoctorController();
-  HospitalsDoctorScreen({required this.hospitalId, required this.hospitalName});
+  HospitalsDoctorScreen({super.key, required this.hospitalId, required this.hospitalName});
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,13 @@ class HospitalsDoctorScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: FutureBuilder<DoctorList>(
             future: doctorController.fetchHospitalDoctors(hospitalId),
             builder: (context, snapshot) {
-              if (!snapshot.hasData)
+              if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
+              }
 
               if (snapshot.data!.doctorList.isEmpty) {
                 return const Center(

@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 TextStyle heading1({Color? color}) {
   return GoogleFonts.poppins(
-      color: color, fontSize: 26, fontWeight: FontWeight.bold);
+      color: color, fontSize: 22, fontWeight: FontWeight.w800);
 }
 
 TextStyle heading2({Color? color}) {
@@ -18,12 +20,12 @@ TextStyle buttonText({Color? color}) {
 
 TextStyle subtitle1({Color? color}) {
   return GoogleFonts.poppins(
-      color: color, fontSize: 16, fontWeight: FontWeight.w500);
+      color: color, fontSize: 12, fontWeight: FontWeight.w400);
 }
 
 TextStyle subtitle2({Color? color}) {
   return GoogleFonts.poppins(
-      color: color, fontSize: 14, fontWeight: FontWeight.w500);
+      color: color, fontSize: 12, fontWeight: FontWeight.w400);
 }
 
 TextStyle subtitle3({Color? color}) {

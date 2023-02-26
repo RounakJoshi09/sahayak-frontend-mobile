@@ -1,6 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:sahayak_application/models/Hospital.dart';
-import 'package:sahayak_application/screens/appointment_screen.dart';
 import 'package:sahayak_application/screens/hospital_doctors_screen.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 
@@ -8,7 +9,7 @@ import '../utils/constants.dart';
 
 class HospitalScreen extends StatelessWidget {
   Hospital hospital;
-  HospitalScreen(this.hospital);
+  HospitalScreen(this.hospital, {super.key});
 
   final Helperfunction _helperfunction = Helperfunction();
   @override
@@ -28,10 +29,18 @@ class HospitalScreen extends StatelessWidget {
           color: const Color.fromARGB(248, 11, 212, 206),
           child: Stack(
             children: [
-              Positioned(
-                  top: 0,
-                  child: Image.network(
-                      base_url + "/download/${hospital.imageId}")),
+              // Positioned(
+              //     top: 0,
+              //     child: Image.network(
+              //         base_url + "/download/${hospital.imageId}")),
+              SizedBox(
+                height: height * 0.35,
+                width: width,
+                child: Image.network(
+                  "$base_url/download/${hospital.imageId}",
+                  fit: BoxFit.fill,
+                ),
+              ),
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -99,53 +108,53 @@ class HospitalScreen extends StatelessWidget {
                         SizedBox(
                           height: height * 0.015,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                                height: height * 0.055,
-                                width: width * 0.28,
-                                decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  color: Color.fromARGB(248, 34, 241, 238),
-                                ),
-                                child: const Center(
-                                    child: Text(
-                                  "Directions",
-                                  style: TextStyle(color: Colors.white),
-                                ))),
-                            Container(
-                                height: height * 0.055,
-                                width: width * 0.28,
-                                decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  color: Color.fromARGB(248, 34, 241, 238),
-                                ),
-                                child: const Center(
-                                    child: Text(
-                                  "Reviews",
-                                  style: TextStyle(color: Colors.white),
-                                ))),
-                            Container(
-                                height: height * 0.055,
-                                width: width * 0.28,
-                                decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  color: Color.fromARGB(248, 34, 241, 238),
-                                ),
-                                child: const Center(
-                                    child: Text(
-                                  "Services",
-                                  style: TextStyle(color: Colors.white),
-                                ))),
-                          ],
-                        ),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     Container(
+                        //         height: height * 0.055,
+                        //         width: width * 0.28,
+                        //         decoration: const BoxDecoration(
+                        //           borderRadius:
+                        //               BorderRadius.all(Radius.circular(25)),
+                        //           color: Color.fromARGB(248, 34, 241, 238),
+                        //         ),
+                        //         child: const Center(
+                        //             child: Text(
+                        //           "Directions",
+                        //           style: TextStyle(color: Colors.white),
+                        //         ))),
+                        //     Container(
+                        //         height: height * 0.055,
+                        //         width: width * 0.28,
+                        //         decoration: const BoxDecoration(
+                        //           borderRadius:
+                        //               BorderRadius.all(Radius.circular(25)),
+                        //           color: Color.fromARGB(248, 34, 241, 238),
+                        //         ),
+                        //         child: const Center(
+                        //             child: Text(
+                        //           "Reviews",
+                        //           style: TextStyle(color: Colors.white),
+                        //         ))),
+                        //     Container(
+                        //         height: height * 0.055,
+                        //         width: width * 0.28,
+                        //         decoration: const BoxDecoration(
+                        //           borderRadius:
+                        //               BorderRadius.all(Radius.circular(25)),
+                        //           color: Color.fromARGB(248, 34, 241, 238),
+                        //         ),
+                        //         child: const Center(
+                        //             child: Text(
+                        //           "Services",
+                        //           style: TextStyle(color: Colors.white),
+                        //         ))),
+                        //   ],
+                        // ),
+                        // SizedBox(
+                        //   height: height * 0.01,
+                        // ),
                         Container(
                           height: height * 0.308,
                           width: width,
@@ -161,6 +170,26 @@ class HospitalScreen extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   height: height * 0.015,
+                                ),
+                                const Text(
+                                  "Address :",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color.fromARGB(160, 85, 88, 88)),
+                                ),
+                                SizedBox(
+                                  height: height * 0.03,
+                                ),
+                                Text(
+                                  "${hospital.area} ${hospital.street} ${hospital.cityName} ${hospital.stateName} ",
+                                  style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 63, 63, 63)),
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
                                 ),
                                 const Text(
                                   "Description :",

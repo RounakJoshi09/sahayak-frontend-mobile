@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/DashboardController.dart';
+import 'package:sahayak_application/screens/profile_screen.dart';
 import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
@@ -65,7 +66,15 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     )
                   ],
                 ),
-                const Icon(Icons.person, size: 40),
+                IconButton(
+                  icon: const Icon(
+                    Icons.person_outline,
+                    size: 30,
+                    color: Color.fromARGB(255, 131, 163, 193),
+                  ),
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ProfileScreen())),
+                ),
                 //  CustomContainer(height: 40, width: 40),
               ],
             ),
@@ -99,9 +108,9 @@ class _PatientDashboardState extends State<PatientDashboard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Hospitals",
-                  style: TextStyle(
+                Text(
+                  "Hospitals in ${MyStorage.cityId}",
+                  style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(160, 85, 88, 88)),

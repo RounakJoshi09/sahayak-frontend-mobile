@@ -1,5 +1,6 @@
-import 'dart:convert';
+// ignore_for_file: depend_on_referenced_packages
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/models/States.dart';
@@ -98,7 +99,7 @@ class RegisterScreenController extends GetxController {
         body: <String, String>{
           "firstName": firstName,
           "lastName": lastName,
-          "patientName": firstName + " " + lastName,
+          "patientName": "$firstName $lastName",
           "age": age,
           "email": email,
           "phoneNo": mobileNumber,

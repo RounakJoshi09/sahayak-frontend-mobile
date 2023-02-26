@@ -1,15 +1,14 @@
-import 'dart:convert';
+// ignore_for_file: depend_on_referenced_packages
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:sahayak_application/models/Doctor.dart';
 import 'package:sahayak_application/models/LeaveDays.dart';
 import 'package:http/http.dart' as http;
 import 'package:sahayak_application/models/TimeSlot.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:dio/dio.dart';
-
 import '../models/Response.dart';
 import '../utils/connection/APIs.dart';
 import '../utils/data/storage.dart';
@@ -23,6 +22,7 @@ class StateManagerController extends GetxController {
   @override
   void onInit() {
     appointmentDate = DateTime.now().obs;
+    // ignore: todo
     // TODO: implement onInit
     super.onInit();
   }

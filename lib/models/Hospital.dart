@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names, avoid_function_literals_in_foreach_calls, avoid_print
 
 class Hospital {
   String id;

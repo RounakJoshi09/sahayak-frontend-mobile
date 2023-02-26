@@ -1,7 +1,7 @@
-import 'dart:convert';
+// ignore_for_file: depend_on_referenced_packages
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sahayak_application/models/Doctor.dart';
 import 'package:http/http.dart' as http;
 import '../utils/connection/APIs.dart';

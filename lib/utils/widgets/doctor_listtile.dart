@@ -7,29 +7,29 @@ import '../TextStyle.dart';
 
 Widget doctorListTile(Doctor doctor, String hospitalId) {
   return Padding(
-    padding: EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(8.0),
     child: Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               // Color.fromARGB(255, 127, 82, 234),
               // Color.fromARGB(255, 125, 136, 230)
-              Color.fromARGB(255, 7, 190, 148),
-              Color.fromARGB(255, 60, 209, 174)
-              // Color.fromARGB(248, 11, 212, 206),
-              // Color.fromARGB(248, 34, 241, 238),
+              // Color.fromARGB(255, 7, 190, 148),
+              // Color.fromARGB(255, 60, 209, 174)
+              Color.fromARGB(248, 11, 212, 206),
+              Color.fromARGB(248, 34, 241, 238),
             ],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             stops: [0.4, 0.7],
             tileMode: TileMode.repeated,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(6))),
+          borderRadius: BorderRadius.all(Radius.circular(8))),
       child: ListTile(
         leading: const Icon(
           Icons.person,
           color: Colors.white,
-          size: 60,
+          size: 55,
         ),
         title: Text(
           doctor.fullName,
@@ -37,14 +37,15 @@ Widget doctorListTile(Doctor doctor, String hospitalId) {
         ),
         subtitle: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               doctor.education,
-              style: subtitle1(color: Colors.amberAccent),
+              style: subtitle1(color: Colors.blueAccent),
             ),
             Text(
               doctor.specialization,
-              style: subtitle2(color: Colors.blueAccent),
+              style: subtitle1(color: Colors.blueAccent),
             ),
           ],
         ),

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, unused_element
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -26,8 +28,7 @@ class CalendarPage2 extends StatelessWidget {
     DateTime(2020, 11, 23),
   ];
   List<DateTime> absentDates;
-  CalendarPage2({required this.absentDates});
-  final DateTime _currentDate2 = DateTime.now();
+  CalendarPage2({super.key, required this.absentDates});
   DateTime? appointmentDate;
   static Widget _presentIcon(String day) => CircleAvatar(
         backgroundColor: Colors.green,
@@ -52,7 +53,6 @@ class CalendarPage2 extends StatelessWidget {
     events: {},
   );
 
-  late CalendarCarousel _calendarCarouselNoHeader;
 
   late double cHeight;
 

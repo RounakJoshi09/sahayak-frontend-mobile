@@ -3,11 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/register_screen_controller.dart';
-import 'package:sahayak_application/utils/TextStyle.dart';
 import '../utils/helper/helper_functions.dart';
-import '../utils/widgets/city_dropdown.dart';
 import '../utils/widgets/custom_button.dart';
-import '../utils/widgets/state_dropdown.dart';
 import '../utils/widgets/textfield_widget.dart';
 import 'navigation_bar_skeleton.dart';
 

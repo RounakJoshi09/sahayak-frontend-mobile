@@ -1,4 +1,6 @@
-import '../constants.dart';
+// ignore_for_file: file_names
+
+import 'package:sahayak_application/utils/constants.dart';
 
 class Sahayak {
   static String fetchAllState() {

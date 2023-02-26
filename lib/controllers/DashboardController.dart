@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, file_names
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,7 +14,6 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     cityId = MyStorage.cityId;
-    // TODO: implement onInit
     super.onInit();
   }
 

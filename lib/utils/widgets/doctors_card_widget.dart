@@ -1,8 +1,6 @@
 // ignore_for_file: sort_child_properties_last, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sahayak_application/controllers/state_manager_controller.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 
 class DocCardWidget extends StatelessWidget {

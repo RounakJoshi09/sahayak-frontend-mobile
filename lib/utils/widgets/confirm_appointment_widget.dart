@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:sahayak_application/controllers/state_manager_controller.dart';
 import 'package:sahayak_application/models/Doctor.dart';
@@ -39,7 +39,7 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                   Text(
                     "Your appointment with Dr. ${doctor.fullName} is confirmed.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
                         color: Color.fromARGB(255, 123, 121, 121)),
@@ -167,9 +167,9 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                   ),
                   CustomButton(
                     height: height * 0.05,
-                    width: width * 0.25,
+                    width: width * 0.33,
                     borderRadius: 6,
-                    title: "Done",
+                    title: "Check Status",
                     color: const Color.fromARGB(248, 11, 212, 206),
                     onTap: () => Navigator.pop(context),
                   )
