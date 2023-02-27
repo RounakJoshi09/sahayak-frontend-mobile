@@ -45,7 +45,9 @@ class LoginScreen extends StatelessWidget {
             TextfieldWidget(
                 title: "Password",
                 icon: Icons.key,
-                controller: passwordController),
+                controller: passwordController,
+                isObscure: true,
+                showSuffixIcon: true,),
             const SizedBox(
               height: 20,
             ),

@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:sahayak_application/controllers/state_manager_controller.dart';
 import 'package:sahayak_application/models/Doctor.dart';
+import 'package:sahayak_application/screens/history_appointment_screen.dart';
+import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
+import 'package:sahayak_application/screens/patient_dashboard.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_button.dart';
 import 'package:intl/intl.dart';
@@ -166,13 +169,20 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                     ),
                   ),
                   CustomButton(
-                    height: height * 0.05,
-                    width: width * 0.33,
-                    borderRadius: 6,
-                    title: "Check Status",
-                    color: const Color.fromARGB(248, 11, 212, 206),
-                    onTap: () => Navigator.pop(context),
-                  )
+                      height: height * 0.05,
+                      width: width * 0.33,
+                      borderRadius: 6,
+                      title: "Check Status",
+                      color: const Color.fromARGB(248, 11, 212, 206),
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const NavBarSkeleton(tab_name: _SelectedTab.appointment,)),
+                            (route) => false);
+                        //Navigator.pop(context);
+                      })
                 ],
               ),
             );
@@ -181,3 +191,5 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
       },
       context: context);
 }
+
+enum _SelectedTab { home, appointment, reminder, profile }

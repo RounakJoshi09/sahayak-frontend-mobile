@@ -24,7 +24,12 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.03,
+                ),
+                ProfileCard(
+                  title: "About Us",
+                  icon: Icons.person_outline_rounded,
+                  onTap: () {},
                 ),
                 ProfileCard(
                   title: "My Account",
