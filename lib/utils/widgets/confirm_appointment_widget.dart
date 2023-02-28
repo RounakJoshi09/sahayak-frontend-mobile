@@ -5,6 +5,7 @@ import 'package:sahayak_application/models/Doctor.dart';
 import 'package:sahayak_application/screens/history_appointment_screen.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/screens/patient_dashboard.dart';
+import 'package:sahayak_application/utils/TextStyle.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_button.dart';
 import 'package:intl/intl.dart';
@@ -134,10 +135,6 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                       ],
                     ),
                   ),
-
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
                   Container(
                     height: 0.9,
                     width: 800,
@@ -168,8 +165,12 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                       ],
                     ),
                   ),
+                  Text(
+                    "Your Turn Time : ${StateManagerController.stateManagerController.approximateTurnTime}*",
+                    style: subtitle1(color: Colors.green),
+                  ),
                   CustomButton(
-                      height: height * 0.05,
+                      height: height * 0.03,
                       width: width * 0.33,
                       borderRadius: 6,
                       title: "Check Status",
@@ -178,11 +179,17 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (_) =>
-                                    const NavBarSkeleton(tab_name: _SelectedTab.appointment,)),
+                                builder: (_) => const NavBarSkeleton(
+                                      tab_name: _SelectedTab.appointment,
+                                    )),
                             (route) => false);
                         //Navigator.pop(context);
-                      })
+                      }),
+                  Text(
+                    "*Your Turn Time is approximate and depends on various factors, therefore we request you to reach the hospital 15 minutes before your turn time",
+                    style: subtitle5(color: Colors.grey),
+                    textAlign: TextAlign.justify,
+                  )
                 ],
               ),
             );

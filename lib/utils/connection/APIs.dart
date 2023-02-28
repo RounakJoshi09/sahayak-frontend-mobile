@@ -38,4 +38,8 @@ class Sahayak {
   static String bookAppointment() {
     return "$base_url/api/appointments/appointment";
   }
+
+  static String upcomingAppointment(String patientId) {
+    return "$base_url/api/appointments/upcomingAppointment/$patientId";
+  }
 }

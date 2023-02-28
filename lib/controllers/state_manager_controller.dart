@@ -18,7 +18,7 @@ class StateManagerController extends GetxController {
   static StateManagerController get stateManagerController =>
       Get.find<StateManagerController>();
   late Rx<DateTime> appointmentDate;
-  RxInt index = 0.obs;
+  RxInt index = (-1).obs;
 
   @override
   void onInit() {
@@ -32,6 +32,7 @@ class StateManagerController extends GetxController {
   int timeSlotsCount = 1;
   String selectedSlotStart = "";
   String selectedSlotEnd = "";
+  String approximateTurnTime = "";
 
   void setSelectedSlotStart(String slotStart) {
     selectedSlotStart = slotStart;
@@ -103,6 +104,7 @@ class StateManagerController extends GetxController {
       );
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
+        index.value = -1;
         var jsonData = jsonDecode(response.body);
         debugPrint(jsonData.toString());
         return TimeSlotList.fromJson(jsonData['data'] as List<dynamic>);
@@ -137,7 +139,8 @@ class StateManagerController extends GetxController {
         "patient_name": MyStorage.readFullName,
         "age": MyStorage.readAge,
         "phone": MyStorage.readMobileNumber
-      }
+      },
+      "approximate_turn_time": approximateTurnTime
     };
     var dio = Dio();
     var response = await dio

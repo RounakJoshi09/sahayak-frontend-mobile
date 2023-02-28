@@ -19,7 +19,7 @@ class PresentAppointmentScreen extends StatelessWidget {
             SizedBox(
               height: height * 0.02,
             ),
-            HistoryCardWidget(),
+            // HistoryCardWidget(),
           ],
         ),
       ),

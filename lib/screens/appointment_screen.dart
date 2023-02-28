@@ -159,6 +159,9 @@ class AppointmentScreen extends StatelessWidget {
                                               timeSlot.slotStart;
                                           controller.selectedSlotEnd =
                                               timeSlot.slotEnd;
+                                          controller.approximateTurnTime =
+                                              snapshot.data!.timeSlotList[index]
+                                                  .approximateTurnTime;
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -227,6 +230,11 @@ class AppointmentScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 0, bottom: 8, left: 8, right: 8),
         child: GestureDetector(
           onTap: (() async {
+            if (StateManagerController.stateManagerController.index.value ==
+                -1) {
+              Helperfunction.showToast("Please Select Slot First");
+              return;
+            }
             CustomResponse customResponse = await StateManagerController
                 .stateManagerController
                 .bookAppointment(doctor, hospitalId);

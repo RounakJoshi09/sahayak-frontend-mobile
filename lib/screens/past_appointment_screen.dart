@@ -18,14 +18,14 @@ class PastAppointmentScreen extends StatelessWidget {
             SizedBox(
               height: height * 0.01,
             ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: 3,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return HistoryCardWidget();
-                  }),
-            ),
+            // Expanded(
+            //   child: ListView.builder(
+            //       itemCount: 3,
+            //       shrinkWrap: true,
+            //       itemBuilder: (context, index) {
+            //         return HistoryCardWidget();
+            //       }),
+            // ),
           ],
         ),
       ),
