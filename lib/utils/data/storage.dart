@@ -39,6 +39,10 @@ class MyStorage {
     box.write('is_login', isLogin);
   }
 
+  static void setAge(String age) {
+    box.write('age', age);
+  }
+
   static get readFirstName => box.read('first_name');
   static get readLastName => box.read('last_name');
   static get readEmail => box.read('email');
@@ -48,4 +52,5 @@ class MyStorage {
   static get readFullName =>
       box.read('first_name') + " " + box.read('last_name');
   static get readisLogin => box.read('is_login');
+  static get readAge => box.read('age');
 }

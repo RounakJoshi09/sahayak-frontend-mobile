@@ -4,17 +4,19 @@ class TimeSlot {
   String slotStart;
   String slotEnd;
   String totalAppointmentsAllowed;
-
+  String approximateTurnTime;
   TimeSlot(
       {required this.slotEnd,
       required this.slotStart,
-      required this.totalAppointmentsAllowed});
+      required this.totalAppointmentsAllowed,
+      required this.approximateTurnTime});
 
   factory TimeSlot.fromJson(Map<String, dynamic> json) {
     return TimeSlot(
         slotEnd: json['slot_end'],
         slotStart: json['slot_start'],
-        totalAppointmentsAllowed: json['maximum_appointment']);
+        totalAppointmentsAllowed: json['maximum_appointment'],
+        approximateTurnTime: json['approximate_turn_time']);
   }
 }
 

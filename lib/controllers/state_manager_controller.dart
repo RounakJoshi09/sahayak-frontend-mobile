@@ -14,7 +14,6 @@ import '../models/Response.dart';
 import '../utils/connection/APIs.dart';
 import '../utils/data/storage.dart';
 
-
 class StateManagerController extends GetxController {
   static StateManagerController get stateManagerController =>
       Get.find<StateManagerController>();
@@ -108,7 +107,7 @@ class StateManagerController extends GetxController {
         debugPrint(jsonData.toString());
         return TimeSlotList.fromJson(jsonData['data'] as List<dynamic>);
       } else {
-        Helperfunction.showToast("Appointments Slots Not Found");
+        Helperfunction.showToast(jsonDecode(response.body)['message']);
         return TimeSlotList([]);
       }
     } catch (e) {
@@ -133,6 +132,11 @@ class StateManagerController extends GetxController {
         "specialization": doctor.specialization,
         "education": doctor.education,
         "price": doctor.price
+      },
+      "patient": {
+        "patient_name": MyStorage.readFullName,
+        "age": MyStorage.readAge,
+        "phone": MyStorage.readMobileNumber
       }
     };
     var dio = Dio();

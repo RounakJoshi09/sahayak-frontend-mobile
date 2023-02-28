@@ -20,12 +20,16 @@ TextStyle buttonText({Color? color}) {
 
 TextStyle subtitle1({Color? color}) {
   return GoogleFonts.poppins(
-      color: color, fontSize: 12, fontWeight: FontWeight.w400);
+      color: color, fontSize: 14, fontWeight: FontWeight.w600);
 }
 
 TextStyle subtitle2({Color? color}) {
   return GoogleFonts.poppins(
       color: color, fontSize: 12, fontWeight: FontWeight.w400);
+}
+TextStyle subtitle2Bold({Color? color}) {
+  return GoogleFonts.roboto(
+      color: color, fontSize: 13, fontWeight: FontWeight.bold);
 }
 
 TextStyle subtitle3({Color? color}) {

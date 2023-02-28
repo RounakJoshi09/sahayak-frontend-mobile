@@ -89,12 +89,13 @@ class _PatientDashboardState extends State<PatientDashboard> {
               height: height * 0.01,
             ),
             CustomContainer(
-                height: 180,
-                width: 800,
-                widget: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )),
+              height: 180,
+              width: 800,
+              widget: AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              ),
+            ),
             SizedBox(
               height: height * 0.01,
             ),
@@ -108,15 +109,17 @@ class _PatientDashboardState extends State<PatientDashboard> {
             //     ),
             //   ),
             // ),
-            HistoryCardWidget( onTap: (){
-              Navigator.pushAndRemoveUntil(
+            HistoryCardWidget(
+              onTap: () {
+                Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                         builder: (_) => const NavBarSkeleton(
                               tab_name: _SelectedTab.appointment,
                             )),
                     (route) => false);
-            },),
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

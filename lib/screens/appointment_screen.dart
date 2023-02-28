@@ -145,6 +145,15 @@ class AppointmentScreen extends StatelessWidget {
                                           snapshot.data!.timeSlotList[index];
                                       return InkWell(
                                         onTap: () {
+                                          if (int.parse(snapshot
+                                                  .data!
+                                                  .timeSlotList[index]
+                                                  .totalAppointmentsAllowed) <=
+                                              0) {
+                                            Helperfunction.showToast(
+                                                "This Slot is Full");
+                                            return;
+                                          }
                                           controller.index.value = index;
                                           controller.selectedSlotStart =
                                               timeSlot.slotStart;
@@ -164,8 +173,9 @@ class AppointmentScreen extends StatelessWidget {
                                                       controller.index.value ==
                                                               index
                                                           ? Color.fromARGB(
-                                                              248, 11, 212, 206)
-                                                          : Color.fromRGBO(236,
+                                                              248, 72, 243, 237)
+                                                          : const Color
+                                                                  .fromRGBO(236,
                                                               237, 237, 1)),
                                               child: Padding(
                                                 padding: EdgeInsets.all(8.0),
@@ -181,9 +191,21 @@ class AppointmentScreen extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       "${timeSlot.totalAppointmentsAllowed} Appointment Allowed",
-                                                      style: subtitle1(
-                                                          color: Colors.red),
+                                                      style: controller.index
+                                                                  .value ==
+                                                              index
+                                                          ? subtitle1(
+                                                              color:
+                                                                  Colors.blue)
+                                                          : subtitle1(
+                                                              color:
+                                                                  Colors.red),
                                                     ),
+                                                    Text(
+                                                        "Your Turn Time - ${timeSlot.approximateTurnTime}",
+                                                        style: subtitle2Bold(
+                                                            color:
+                                                                Colors.green)),
                                                   ],
                                                 ),
                                               ),
