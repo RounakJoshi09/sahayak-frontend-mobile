@@ -1,22 +1,25 @@
-// ignore_for_file: must_be_immutable, use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sahayak_application/controllers/state_manager_controller.dart';
 import 'package:sahayak_application/models/Response.dart';
 import 'package:sahayak_application/models/TimeSlot.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/calender_widget.dart';
 import 'package:sahayak_application/utils/widgets/confirm_appointment_widget.dart';
+import 'package:sahayak_application/utils/widgets/date_picker.dart';
 import '../models/Doctor.dart';
 import '../utils/TextStyle.dart';
+import '../utils/widgets/doctors_card_widget.dart';
 
 class AppointmentScreen extends StatelessWidget {
   Doctor doctor;
   String hospitalId;
-  AppointmentScreen(this.doctor, this.hospitalId, {super.key});
+  AppointmentScreen(this.doctor, this.hospitalId);
 
   final Helperfunction _helperfunction = Helperfunction();
+  final StateManagerController _stateManagerController =
+      Get.put(StateManagerController());
   @override
   Widget build(BuildContext context) {
     var height = _helperfunction.getHeight(context);
@@ -118,75 +121,78 @@ class AppointmentScreen extends StatelessWidget {
                   init: StateManagerController(),
                   builder: (controller) {
                     return Center(
-                      child: FutureBuilder<TimeSlotList>(
-                          future: controller.fetchTimeSlotByDoctorIdAndDate(
-                              doctor.id, controller.appointmentDate.value),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            }
-                            if (snapshot.data!.timeSlotList.isEmpty) {
-                              return const Center(
-                                  child: Text(
-                                      'Appointment Time Slots Not Found'));
-                            }
-                            return ListView.builder(
-                                itemCount:
-                                    snapshot.data!.timeSlotList.length,
-                                itemBuilder: (context, index) {
-                                  TimeSlot timeSlot =
-                                      snapshot.data!.timeSlotList[index];
-                                  return InkWell(
-                                    onTap: () {
-                                      controller.index.value = index;
-                                      controller.selectedSlotStart =
-                                          timeSlot.slotStart;
-                                      controller.selectedSlotEnd =
-                                          timeSlot.slotEnd;
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Obx(
-                                        () => Container(
-                                          width: width * 0.8,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(8)),
-                                              color:
-                                                  controller.index.value ==
-                                                          index
-                                                      ? const Color.fromARGB(
-                                                          248, 11, 212, 206)
-                                                      : const Color.fromRGBO(236,
-                                                          237, 237, 1)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "${timeSlot.slotStart} - ${timeSlot.slotEnd}",
-                                                  style: subtitle1(
-                                                      color: Colors.black),
+                      child: Container(
+                          width: width * 0.8,
+                          height: height * 0.3,
+                          child: FutureBuilder<TimeSlotList>(
+                              future: controller.fetchTimeSlotByDoctorIdAndDate(
+                                  doctor.id, controller.appointmentDate.value),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
+                                if (snapshot.data!.timeSlotList.isEmpty) {
+                                  return const Center(
+                                      child: Text(
+                                          'Appointment Time Slots Not Found'));
+                                }
+                                return ListView.builder(
+                                    itemCount:
+                                        snapshot.data!.timeSlotList.length,
+                                    itemBuilder: (context, index) {
+                                      TimeSlot timeSlot =
+                                          snapshot.data!.timeSlotList[index];
+                                      return InkWell(
+                                        onTap: () {
+                                          controller.index.value = index;
+                                          controller.selectedSlotStart =
+                                              timeSlot.slotStart;
+                                          controller.selectedSlotEnd =
+                                              timeSlot.slotEnd;
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Obx(
+                                            () => Container(
+                                              width: width * 0.8,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(8)),
+                                                  color:
+                                                      controller.index.value ==
+                                                              index
+                                                          ? Color.fromARGB(
+                                                              248, 11, 212, 206)
+                                                          : Color.fromRGBO(236,
+                                                              237, 237, 1)),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      "${timeSlot.slotStart} - ${timeSlot.slotEnd}",
+                                                      style: subtitle1(
+                                                          color: Colors.black),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(
+                                                      "${timeSlot.totalAppointmentsAllowed} Appointment Allowed",
+                                                      style: subtitle1(
+                                                          color: Colors.red),
+                                                    ),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "${timeSlot.totalAppointmentsAllowed} Appointment Allowed",
-                                                  style: subtitle1(
-                                                      color: Colors.red),
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  );
-                                });
-                          }),
+                                      );
+                                    });
+                              })),
                     );
                   },
                 ),

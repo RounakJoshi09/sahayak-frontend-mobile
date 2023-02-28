@@ -39,22 +39,22 @@ class HospCardWidget extends StatelessWidget {
                   color: Color.fromRGBO(61, 60, 60, 0.757),
                   fontWeight: FontWeight.w600),
             ),
-            Text(
-              "${hospital.cityName.toUpperCase()},",
-              style: const TextStyle(
-                  color: Color.fromRGBO(61, 60, 60, 0.757),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400),
-            ),
-            const SizedBox(
-              height: 2,
-            ),
-            Text(hospital.stateName.toUpperCase(),
-              style: const TextStyle(
-                  color: Color.fromRGBO(61, 60, 60, 0.757),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400),
-            ),
+            // Text(
+            //   "${hospital.cityName.toUpperCase()},",
+            //   style: const TextStyle(
+            //       color: Color.fromRGBO(61, 60, 60, 0.757),
+            //       fontSize: 14,
+            //       fontWeight: FontWeight.w400),
+            // ),
+            // const SizedBox(
+            //   height: 2,
+            // ),
+            // Text(hospital.stateName.toUpperCase(),
+            //   style: const TextStyle(
+            //       color: Color.fromRGBO(61, 60, 60, 0.757),
+            //       fontSize: 14,
+            //       fontWeight: FontWeight.w400),
+            // ),
           ],
         ),
       ),

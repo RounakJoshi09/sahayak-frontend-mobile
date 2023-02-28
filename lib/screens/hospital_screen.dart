@@ -156,7 +156,7 @@ class HospitalScreen extends StatelessWidget {
                         //   height: height * 0.01,
                         // ),
                         Container(
-                          height: height * 0.308,
+                          height: height * 0.4,
                           width: width,
                           decoration: const BoxDecoration(
                               color: Color.fromARGB(255, 240, 241, 241),

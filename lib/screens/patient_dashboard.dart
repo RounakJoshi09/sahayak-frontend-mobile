@@ -108,9 +108,9 @@ class _PatientDashboardState extends State<PatientDashboard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Hospitals in ${MyStorage.cityId}",
-                  style: const TextStyle(
+                const Text(
+                  "Hospitals in Your City",
+                  style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(160, 85, 88, 88)),

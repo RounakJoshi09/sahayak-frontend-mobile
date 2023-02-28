@@ -18,10 +18,10 @@ class SahayakApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  ProfileScreen(),
-      // home: MyStorage.readisLogin == true
-      //     ? const NavBarSkeleton()
-      //     : LoginScreen(),
+      //home:  ProfileScreen(),
+      home: MyStorage.readisLogin == true
+          ? const NavBarSkeleton()
+          : LoginScreen(),
     );
   }
 }
