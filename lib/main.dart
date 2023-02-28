@@ -3,7 +3,6 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sahayak_application/screens/login_screen.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
-import 'package:sahayak_application/screens/profile_screen.dart';
 import 'package:sahayak_application/utils/data/storage.dart';
 
 void main() async {

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/DashboardController.dart';
+import 'package:sahayak_application/screens/history_appointment_screen.dart';
+import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/screens/profile_screen.dart';
 import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
+import 'package:sahayak_application/utils/widgets/history_card_widget.dart';
 import 'package:sahayak_application/utils/widgets/hosp_card_widget.dart';
 import 'package:sahayak_application/utils/widgets/search_bar.dart';
 import 'package:video_player/video_player.dart';
@@ -95,16 +98,25 @@ class _PatientDashboardState extends State<PatientDashboard> {
             SizedBox(
               height: height * 0.01,
             ),
-            CustomContainer(
-              height: height * 0.15,
-              width: width,
-              widget: Center(
-                child: ElevatedButton(
-                  child: const Text("Book Now"),
-                  onPressed: () {},
-                ),
-              ),
-            ),
+            // CustomContainer(
+            //   height: height * 0.15,
+            //   width: width,
+            //   widget: Center(
+            //     child: ElevatedButton(
+            //       child: const Text("Book Now"),
+            //       onPressed: () {},
+            //     ),
+            //   ),
+            // ),
+            HistoryCardWidget( onTap: (){
+              Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const NavBarSkeleton(
+                              tab_name: _SelectedTab.appointment,
+                            )),
+                    (route) => false);
+            },),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -172,3 +184,5 @@ class _PatientDashboardState extends State<PatientDashboard> {
     _controller.dispose();
   }
 }
+
+enum _SelectedTab { home, appointment, reminder, profile }

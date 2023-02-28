@@ -14,6 +14,7 @@ import '../models/Response.dart';
 import '../utils/connection/APIs.dart';
 import '../utils/data/storage.dart';
 
+
 class StateManagerController extends GetxController {
   static StateManagerController get stateManagerController =>
       Get.find<StateManagerController>();
