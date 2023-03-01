@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,6 +10,8 @@ import 'package:sahayak_application/screens/profile_screen.dart';
 
 void main() async {
   await GetStorage.init();
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const SahayakApp());
 }
 

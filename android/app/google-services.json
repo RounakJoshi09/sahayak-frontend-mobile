@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608353551654",
+    "project_id": "sahayak-5673a",
+    "storage_bucket": "sahayak-5673a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608353551654:android:21578a85f14ff2167b2de7",
+        "android_client_info": {
+          "package_name": "com.example.sahayak_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608353551654-tka7ppojks0h6k2uk7h9s1nam7chjmvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHzdll46FXRRACF3vRDIq9i7j0VjxeizM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608353551654-tka7ppojks0h6k2uk7h9s1nam7chjmvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

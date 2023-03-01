@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/login_controller.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
+import 'package:sahayak_application/screens/phone_verfication_screen.dart';
 import 'package:sahayak_application/screens/register_screen.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_button.dart';
 import 'package:sahayak_application/utils/widgets/textfield_widget.dart';
 
+import '../utils/widgets/phone_number_field.dart';
+
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final Helperfunction _helperfunction = Helperfunction();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
@@ -37,17 +38,17 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            TextfieldWidget(
-                title: "Phone", icon: Icons.phone, controller: phoneController),
+            const PhoneNumberField(),
             const SizedBox(
               height: 10,
             ),
             TextfieldWidget(
-                title: "Password",
-                icon: Icons.key,
-                controller: passwordController,
-                isObscure: true,
-                showSuffixIcon: true,),
+              title: "Password",
+              icon: Icons.key,
+              controller: LoginController.loginController.passwordController,
+              isObscure: true,
+              showSuffixIcon: true,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -58,7 +59,9 @@ class LoginScreen extends StatelessWidget {
                 title: "Login",
                 onTap: () async {
                   var response = await loginController.loginUser(
-                      phoneController.text, passwordController.text);
+                      LoginController
+                          .loginController.phoneNumberController.text,
+                      LoginController.loginController.passwordController.text);
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(
@@ -94,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterScreen())),
+                            builder: (context) => PhoneVerification())),
                     child: const Text(
                       "Register Here",
                       style: TextStyle(

@@ -5,10 +5,52 @@ import 'package:sahayak_application/utils/connection/APIs.dart';
 import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:dio/dio.dart';
 
-class LoginController extends GetxController {
+enum MobileVerificationState {
+  ENTER_MOBILE_NUMBER_STATE,
+  ENTER_OTP_STATE,
+}
 
-  static  LoginController get loginController => Get.find();
+class LoginController extends GetxController {
+  static LoginController get loginController => Get.find();
+  Rx<MobileVerificationState> currentState =
+      MobileVerificationState.ENTER_MOBILE_NUMBER_STATE.obs;
+  RxBool showLoading = false.obs;
+  TextEditingController phoneNumberController = new TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final registrationPhoneNumberController =
+      TextEditingController(); //For taking input from the field
+  final otpController =
+      TextEditingController(); //For taking input from the field
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
+
+  String verificationId = "";
+
   var dio = Dio();
+  void setVerificationId(String id) {
+    verificationId = id;
+  }
+
+  void showLoadingState() {
+    showLoading = true.obs;
+  }
+
+  void notShowLoadingState() {
+    showLoading = false.obs;
+  }
+
+  void changeToOTPState() {
+    currentState.value = MobileVerificationState.ENTER_OTP_STATE;
+    update();
+  }
+
+  void changeToPhoneState() {
+    currentState = MobileVerificationState.ENTER_MOBILE_NUMBER_STATE.obs;
+  }
+
   Future<CustomResponse> loginUser(String mobileNo, String password) async {
     try {
       debugPrint(Sahayak.loginPatient());
@@ -56,6 +98,4 @@ class LoginController extends GetxController {
       return CustomResponse(message: "Something Went Wrong", statusCode: 404);
     }
   }
-
-  
 }
