@@ -12,12 +12,12 @@ class PhoneNumberScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PhoneNumberField(),
+        PhoneNumberField(enabled: true),
         Container(
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
           child: MaterialButton(
-            color: Color.fromRGBO(46, 59, 98, 1),
+            color: Color.fromARGB(248, 11, 212, 206),
             textColor: Colors.white,
             onPressed: () async {
 //              showLoadingState();

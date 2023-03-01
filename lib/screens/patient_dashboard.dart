@@ -228,7 +228,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
         }
         return Appointment.fromJson(jsonData['data']);
       } else {
-        Helperfunction.showToast(jsonDecode(response.body)['message']);
+        //Helperfunction.showToast(jsonDecode(response.body)['message']);
         return null;
       }
     } catch (e) {

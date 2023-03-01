@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const PhoneNumberField(),
+            PhoneNumberField(enabled: true),
             const SizedBox(
               height: 10,
             ),

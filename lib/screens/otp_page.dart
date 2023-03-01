@@ -29,9 +29,7 @@ class OTPPage extends StatelessWidget {
           Helperfunction.showToast("Incorrect OTP");
         }
       } on FirebaseAuthException catch (e) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Text(e.toString())));
-        // TODO
+        Helperfunction.showToast("Incorrect OTP/Something Went Wrong");
       }
     }
 
@@ -75,7 +73,7 @@ class OTPPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
             child: MaterialButton(
-              color: Color.fromRGBO(46, 59, 98, 1),
+              color: Color.fromARGB(248, 11, 212, 206),
               textColor: Colors.white,
               onPressed: () async {},
               child: Container(

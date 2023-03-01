@@ -76,11 +76,11 @@ class LoginController extends GetxController {
 
         var jsonData = response.data;
         debugPrint(jsonData.toString());
-        MyStorage.setFirstName(jsonData['first_name']);
-        MyStorage.setLastName(jsonData['last_name']);
-        MyStorage.setFullName(jsonData['first_name'] + jsonData['last_name']);
+        MyStorage.setFirstName(jsonData['firstName']);
+        MyStorage.setLastName(jsonData['lastName']);
+        MyStorage.setFullName(jsonData['firstName'] + jsonData['lastName']);
         MyStorage.setEmail(jsonData['email']);
-        MyStorage.setMobileNumber(jsonData['phone_no']);
+        MyStorage.setMobileNumber(jsonData['phoneNo']);
         MyStorage.setStateId(jsonData['stateId']);
         MyStorage.setCityId(jsonData['cityId']);
         MyStorage.setAge(jsonData['age']);

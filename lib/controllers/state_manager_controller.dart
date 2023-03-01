@@ -138,9 +138,9 @@ class StateManagerController extends GetxController {
         "price": doctor.price
       },
       "patient": {
-        "patient_name": MyStorage.readFullName,
+        "patientName": MyStorage.readFullName,
         "age": MyStorage.readAge,
-        "phone": MyStorage.readMobileNumber
+        "phoneNo": MyStorage.readMobileNumber
       },
       "approximate_turn_time": approximateTurnTime
     };
