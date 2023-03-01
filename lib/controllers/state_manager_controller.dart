@@ -129,6 +129,8 @@ class StateManagerController extends GetxController {
       "appointment_start_time": selectedSlotStart,
       "appointment_end_time": selectedSlotEnd,
       "patient_id": patientId,
+      "date_of_appointment":
+          Helperfunction.getDateString(appointmentDate.value),
       "doctor": {
         "full_name": doctor.fullName,
         "specialization": doctor.specialization,
@@ -142,6 +144,7 @@ class StateManagerController extends GetxController {
       },
       "approximate_turn_time": approximateTurnTime
     };
+    print(data);
     var dio = Dio();
     var response = await dio
         .post(

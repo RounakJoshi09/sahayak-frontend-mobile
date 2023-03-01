@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/DashboardController.dart';
-import 'package:sahayak_application/models/UpcomingAppointment.dart';
+import 'package:sahayak_application/models/Appointment.dart';
 import 'package:sahayak_application/screens/history_appointment_screen.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/screens/profile_screen.dart';
@@ -130,7 +130,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     SizedBox(
                       height: height * 0.01,
                     ),
-                    FutureBuilder<UpcomingAppointment?>(
+                    FutureBuilder<Appointment?>(
                         future: fetchUpcomingAppointment(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
@@ -151,7 +151,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             onTap: () {
                               Get.offAll(const NavBarSkeleton());
                             },
-                            upcomingAppointment: snapshot.data!,
+                            appointment: snapshot.data!,
                           );
                         }),
                     Row(
@@ -219,7 +219,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
     );
   }
 
-  Future<UpcomingAppointment?> fetchUpcomingAppointment() async {
+  Future<Appointment?> fetchUpcomingAppointment() async {
     try {
       String patientId = MyStorage.readId;
       debugPrint(Sahayak.upcomingAppointment(patientId));
@@ -233,7 +233,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
         if (jsonData['data'] == null) {
           return null;
         }
-        return UpcomingAppointment.fromJson(jsonData['data']);
+        return Appointment.fromJson(jsonData['data']);
       } else {
         Helperfunction.showToast(jsonDecode(response.body)['message']);
         return null;

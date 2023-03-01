@@ -118,6 +118,7 @@ class AppointmentScreen extends StatelessWidget {
                 //   ),
                 // ),
                 GetBuilder(
+                  id: "time_slot",
                   init: StateManagerController(),
                   builder: (controller) {
                     return Center(
@@ -239,6 +240,8 @@ class AppointmentScreen extends StatelessWidget {
                 .stateManagerController
                 .bookAppointment(doctor, hospitalId);
             if (customResponse.statusCode == 200) {
+              StateManagerController.stateManagerController
+                  .update(["time_slot"]);
               ShowConfirmation(context, doctor);
             } else {
               Helperfunction.showToast(customResponse.message);

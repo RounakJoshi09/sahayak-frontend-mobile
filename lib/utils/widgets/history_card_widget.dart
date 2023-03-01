@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sahayak_application/models/UpcomingAppointment.dart';
+import 'package:sahayak_application/models/Appointment.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
 
 class HistoryCardWidget extends StatelessWidget {
   final Function? onTap;
-  UpcomingAppointment upcomingAppointment;
-  HistoryCardWidget({super.key, this.onTap, required this.upcomingAppointment});
+  Appointment appointment;
+  HistoryCardWidget({super.key, this.onTap, required this.appointment});
 
   final Helperfunction _helperfunction = Helperfunction();
 
@@ -51,7 +51,7 @@ class HistoryCardWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Dr ${upcomingAppointment.doctorName}",
+                        "Dr ${appointment.doctorName}",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
@@ -60,7 +60,7 @@ class HistoryCardWidget extends StatelessWidget {
                     ],
                   ),
                   // Text(
-                  //   upcomingAppointment.doctorEducation,
+                  //   appointment.doctorEducation,
                   //   style: TextStyle(
                   //       fontSize: 20,
                   //       fontWeight: FontWeight.w700,
@@ -70,21 +70,21 @@ class HistoryCardWidget extends StatelessWidget {
                   //   height: 3,
                   // ),
                   Text(
-                    upcomingAppointment.hospitalName,
+                    appointment.hospitalName,
                     style: TextStyle(
                         color: Color.fromARGB(159, 24, 39, 244),
                         fontSize: 15,
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    upcomingAppointment.hospitalAddress.toUpperCase(),
+                    appointment.hospitalAddress.toUpperCase(),
                     style: TextStyle(
                         color: Color.fromARGB(159, 24, 39, 244),
                         fontSize: 15,
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    upcomingAppointment.appointmentDate,
+                    appointment.appointmentDate,
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
@@ -101,7 +101,7 @@ class HistoryCardWidget extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        "${upcomingAppointment.approximateStartTime} - ${upcomingAppointment.appointmentEndTime}",
+                        "${appointment.approximateStartTime} - ${appointment.appointmentEndTime}",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -111,7 +111,7 @@ class HistoryCardWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Your Turn Time ${upcomingAppointment.approximateTurnTime}*",
+                    "Your Turn Time ${appointment.approximateTurnTime}*",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

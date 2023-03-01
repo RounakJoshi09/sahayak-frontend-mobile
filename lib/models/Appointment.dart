@@ -1,4 +1,4 @@
-class UpcomingAppointment {
+class Appointment {
   String appointmentEndTime;
   String doctorName;
   String doctorEducation;
@@ -8,7 +8,7 @@ class UpcomingAppointment {
   String hospitalAddress;
   String appointmentDate;
 
-  UpcomingAppointment(
+  Appointment(
       {required this.appointmentEndTime,
       required this.approximateTurnTime,
       required this.approximateStartTime,
@@ -18,8 +18,8 @@ class UpcomingAppointment {
       required this.hospitalName,
       required this.appointmentDate});
 
-  factory UpcomingAppointment.fromJson(Map<String, dynamic> data) {
-    return UpcomingAppointment(
+  factory Appointment.fromJson(Map<String, dynamic> data) {
+    return Appointment(
         appointmentEndTime: data['appointment_end_time'],
         approximateStartTime: data['appointment_start_time'],
         approximateTurnTime: data['approximate_turn_time'],
