@@ -30,3 +30,16 @@ class Appointment {
         appointmentDate: data['appointment_date']);
   }
 }
+
+class AppointmentList {
+  List<Appointment> appointmentList = [];
+
+  AppointmentList(this.appointmentList);
+
+  factory AppointmentList.fromJson(List<dynamic> list) {
+    List<Appointment> doctors = [];
+
+    doctors = list.map((i) => Appointment.fromJson(i)).toList();
+    return AppointmentList(doctors);
+  }
+}

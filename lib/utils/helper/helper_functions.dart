@@ -40,4 +40,22 @@ class Helperfunction {
 
     return dateString;
   }
+
+  static String getDateStringToPrint(DateTime date) {
+    String dateString = "";
+
+    if (date.day < 10) {
+      dateString += "0${date.day}-";
+    } else {
+      dateString += "${date.day}-";
+    }
+    if (date.month < 10) {
+      dateString += "0${date.month}-";
+    } else {
+      dateString += "${date.month}-";
+    }
+    dateString += "${date.year}";
+
+    return dateString;
+  }
 }
