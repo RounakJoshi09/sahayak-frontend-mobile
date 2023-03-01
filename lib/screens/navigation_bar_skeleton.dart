@@ -7,23 +7,22 @@ import 'package:sahayak_application/screens/patient_dashboard.dart';
 import 'package:sahayak_application/screens/profile_screen.dart';
 
 class NavBarSkeleton extends StatefulWidget {
-  const NavBarSkeleton({super.key, this.tab_name = _SelectedTab.home});
-  final tab_name;
+  const NavBarSkeleton({
+    super.key, this.getIndex = 0,
+  });
+
+  final int getIndex;
 
   @override
   _NavBarSkeleton createState() => _NavBarSkeleton();
 }
 
 class _NavBarSkeleton extends State<NavBarSkeleton> {
-  var _selectedTab;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      _selectedTab = widget.tab_name;
-    });
+    _handleIndexChanged(widget.getIndex);
   }
 
   void _handleIndexChanged(int i) {
@@ -31,6 +30,8 @@ class _NavBarSkeleton extends State<NavBarSkeleton> {
       _selectedTab = _SelectedTab.values[i];
     });
   }
+
+  var _selectedTab = _SelectedTab.home;
 
   @override
   Widget build(BuildContext context) {

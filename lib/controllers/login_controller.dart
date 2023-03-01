@@ -9,6 +9,7 @@ class LoginController extends GetxController {
   var dio = Dio();
   Future<CustomResponse> loginUser(String mobileNo, String password) async {
     try {
+      debugPrint(Sahayak.loginPatient());
       Map<String, dynamic> data = {
         "phoneNo": mobileNo,
         "password": password,
@@ -31,11 +32,11 @@ class LoginController extends GetxController {
 
         var jsonData = response.data;
         debugPrint(jsonData.toString());
-        MyStorage.setFirstName(jsonData['firstName']);
-        MyStorage.setLastName(jsonData['lastName']);
-        MyStorage.setFullName(jsonData['firstName'] + jsonData['lastName']);
+        MyStorage.setFirstName(jsonData['first_name']);
+        MyStorage.setLastName(jsonData['last_name']);
+        MyStorage.setFullName(jsonData['first_name'] + jsonData['last_name']);
         MyStorage.setEmail(jsonData['email']);
-        MyStorage.setMobileNumber(jsonData['phoneNo']);
+        MyStorage.setMobileNumber(jsonData['phone_no']);
         MyStorage.setStateId(jsonData['stateId']);
         MyStorage.setCityId(jsonData['cityId']);
         MyStorage.setAge(jsonData['age']);

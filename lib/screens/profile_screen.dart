@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/profile_card_widget.dart';
 
@@ -39,7 +40,9 @@ class ProfileScreen extends StatelessWidget {
                 ProfileCard(
                   title: "Appointment History",
                   icon: Icons.book_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Get.offAll(const NavBarSkeleton(getIndex: 1,));
+                  },
                 ),
                 ProfileCard(
                   title: "Settings",
@@ -72,3 +75,6 @@ class ProfileScreen extends StatelessWidget {
             )));
   }
 }
+
+enum _SelectedTab { home, appointment, reminder, profile }
+

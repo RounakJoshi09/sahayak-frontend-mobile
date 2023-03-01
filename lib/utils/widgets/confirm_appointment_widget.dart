@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sahayak_application/controllers/state_manager_controller.dart';
 import 'package:sahayak_application/models/Doctor.dart';
 import 'package:sahayak_application/screens/history_appointment_screen.dart';
@@ -176,13 +177,7 @@ Future ShowConfirmation(BuildContext context, Doctor doctor) async {
                       title: "Check Status",
                       color: const Color.fromARGB(248, 11, 212, 206),
                       onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const NavBarSkeleton(
-                                      tab_name: _SelectedTab.appointment,
-                                    )),
-                            (route) => false);
+                        Get.offAll(const NavBarSkeleton(getIndex: 1,));
                         //Navigator.pop(context);
                       }),
                   Text(

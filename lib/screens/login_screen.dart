@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                   // );
                   if (response.statusCode == 200) {
                     Helperfunction.showToast(response.message);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const NavBarSkeleton(),

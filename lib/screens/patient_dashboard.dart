@@ -149,13 +149,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                           }
                           return HistoryCardWidget(
                             onTap: () {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => const NavBarSkeleton(
-                                            tab_name: _SelectedTab.appointment,
-                                          )),
-                                  (route) => false);
+                              Get.offAll(const NavBarSkeleton());
                             },
                             upcomingAppointment: snapshot.data!,
                           );
