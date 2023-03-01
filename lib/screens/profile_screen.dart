@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sahayak_application/controllers/login_controller.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/profile_card_widget.dart';
+
+import '../models/Response.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -41,7 +45,9 @@ class ProfileScreen extends StatelessWidget {
                   title: "Appointment History",
                   icon: Icons.book_outlined,
                   onTap: () {
-                    Get.offAll(const NavBarSkeleton(getIndex: 1,));
+                    Get.offAll(const NavBarSkeleton(
+                      getIndex: 1,
+                    ));
                   },
                 ),
                 ProfileCard(
@@ -60,10 +66,26 @@ class ProfileScreen extends StatelessWidget {
                       desc: "Do you want to LogOut?",
                       buttons: [
                         DialogButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () async {
+                            CustomResponse customResponse =
+                                await _helperfunction.logout();
+                            Helperfunction.showToast(customResponse.message);
+                            await Future.delayed(Duration(seconds: 2));
+                            SystemNavigator.pop();
+                          },
                           width: 120,
                           child: const Text(
                             "Yes",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        ),
+                        DialogButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          width: 120,
+                          child: const Text(
+                            "No",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         )
@@ -77,4 +99,3 @@ class ProfileScreen extends StatelessWidget {
 }
 
 enum _SelectedTab { home, appointment, reminder, profile }
-

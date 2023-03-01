@@ -3,6 +3,10 @@ import 'package:get_storage/get_storage.dart';
 class MyStorage {
   static final box = GetStorage();
 
+  static void eraseAll() async {
+    await box.erase();
+  }
+
   static void setFirstName(String firstName) {
     box.write('first_name', firstName);
   }
@@ -51,6 +55,6 @@ class MyStorage {
   static get cityId => box.read('city_id');
   static get readFullName =>
       box.read('first_name') + " " + box.read('last_name');
-  static get readisLogin => box.read('is_login');
+  static get readisLogin => box.read('is_login') ?? false;
   static get readAge => box.read('age');
 }

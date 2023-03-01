@@ -6,6 +6,8 @@ import 'package:sahayak_application/utils/data/storage.dart';
 import 'package:dio/dio.dart';
 
 class LoginController extends GetxController {
+
+  static  LoginController get loginController => Get.find();
   var dio = Dio();
   Future<CustomResponse> loginUser(String mobileNo, String password) async {
     try {
@@ -54,4 +56,6 @@ class LoginController extends GetxController {
       return CustomResponse(message: "Something Went Wrong", statusCode: 404);
     }
   }
+
+  
 }

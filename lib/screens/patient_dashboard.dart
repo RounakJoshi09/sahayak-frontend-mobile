@@ -120,38 +120,31 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     //     ),
                     //   ),
                     // ),
-                    const Text(
-                      "Your Next Appointment",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(160, 85, 88, 88)),
-                    ),
-                    SizedBox(
-                      height: height * 0.01,
-                    ),
+
                     FutureBuilder<Appointment?>(
                         future: fetchUpcomingAppointment(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
-                            return CustomContainer(
-                                height: height * 0.18,
-                                width: width,
-                                widget: Center(
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Book Now",
-                                      style: subtitle1(color: Colors.white),
-                                    ),
-                                  ),
-                                ));
+                            return Container();
                           }
-                          return HistoryCardWidget(
-                            onTap: () {
-                              Get.offAll(const NavBarSkeleton());
-                            },
-                            appointment: snapshot.data!,
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Your Next Appointment",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color.fromARGB(160, 85, 88, 88)),
+                              ),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                              HistoryCardWidget(
+                                onTap: () {},
+                                appointment: snapshot.data!,
+                              ),
+                            ],
                           );
                         }),
                     Row(
