@@ -40,7 +40,7 @@ class HospitalsDoctorScreen extends StatelessWidget {
                 itemCount: snapshot.data!.doctorList.length,
                 itemBuilder: (context, index) {
                   return doctorListTile(
-                      snapshot.data!.doctorList[index], hospitalId);
+                      snapshot.data!.doctorList[index], hospitalId, hospitalName);
                 },
               );
             },

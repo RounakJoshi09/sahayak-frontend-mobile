@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:sahayak_application/screens/history_appointment_screen.dart';
 import 'package:sahayak_application/screens/patient_dashboard.dart';
 import 'package:sahayak_application/screens/profile_screen.dart';
+import 'package:sahayak_application/screens/reminder_screen.dart';
+import 'package:sahayak_application/utils/network/notifications/notification_services.dart';
 
 class NavBarSkeleton extends StatefulWidget {
   const NavBarSkeleton({
-    super.key, this.getIndex = 0,
+    super.key,
+    this.getIndex = 0,
   });
 
   final int getIndex;
@@ -23,6 +26,7 @@ class _NavBarSkeleton extends State<NavBarSkeleton> {
     // TODO: implement initState
     super.initState();
     _handleIndexChanged(widget.getIndex);
+    _notificationServices.initialiseNotifications();
   }
 
   void _handleIndexChanged(int i) {
@@ -32,6 +36,7 @@ class _NavBarSkeleton extends State<NavBarSkeleton> {
   }
 
   var _selectedTab = _SelectedTab.home;
+  final NotificationServices _notificationServices = NotificationServices();
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +47,11 @@ class _NavBarSkeleton extends State<NavBarSkeleton> {
           ? const PatientDashboard()
           : _selectedTab.index == 1
               ? const HistoryAppointmentScreen()
-              : _selectedTab.index == 3
-                  ? ProfileScreen()
-                  : Center(child: Text(_selectedTab.name)),
+              : _selectedTab.index == 2
+                  ? ReminderScreen()
+                  : _selectedTab.index == 3
+                      ? ProfileScreen()
+                      : Center(child: Text(_selectedTab.name)),
       bottomNavigationBar: DotNavigationBar(
         backgroundColor: const Color.fromARGB(255, 241, 233, 239),
         margin: const EdgeInsets.only(left: 8, right: 8, bottom: 0, top: 0),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,21 +7,29 @@ import 'package:sahayak_application/controllers/state_manager_controller.dart';
 import 'package:sahayak_application/models/Response.dart';
 import 'package:sahayak_application/models/TimeSlot.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
+import 'package:sahayak_application/utils/network/notifications/notification_services.dart';
 import 'package:sahayak_application/utils/widgets/calender_widget.dart';
 import 'package:sahayak_application/utils/widgets/confirm_appointment_widget.dart';
-import 'package:sahayak_application/utils/widgets/date_picker.dart';
 import '../models/Doctor.dart';
 import '../utils/TextStyle.dart';
-import '../utils/widgets/doctors_card_widget.dart';
 
-class AppointmentScreen extends StatelessWidget {
+class AppointmentScreen extends StatefulWidget {
   Doctor doctor;
   String hospitalId;
-  AppointmentScreen(this.doctor, this.hospitalId);
+  String hospitalname;
+  AppointmentScreen(this.doctor, this.hospitalId, this.hospitalname, {super.key});
 
+  @override
+  State<AppointmentScreen> createState() => _AppointmentScreenState();
+}
+
+class _AppointmentScreenState extends State<AppointmentScreen> {
+  final NotificationServices _notificationServices = NotificationServices();
   final Helperfunction _helperfunction = Helperfunction();
+
   final StateManagerController _stateManagerController =
       Get.put(StateManagerController());
+
   @override
   Widget build(BuildContext context) {
     var height = _helperfunction.getHeight(context);
@@ -27,7 +37,7 @@ class AppointmentScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Appointment For Dr. ${doctor.firstName}"),
+        title: Text("Appointment For Dr. ${widget.doctor.firstName}"),
         backgroundColor: const Color.fromARGB(248, 11, 212, 206),
         elevation: 1,
       ),
@@ -75,7 +85,7 @@ class AppointmentScreen extends StatelessWidget {
                 ),
                 FutureBuilder(
                   future: StateManagerController.stateManagerController
-                      .fetchLeaveDays(doctor.id),
+                      .fetchLeaveDays(widget.doctor.id),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
@@ -127,7 +137,8 @@ class AppointmentScreen extends StatelessWidget {
                           height: height * 0.3,
                           child: FutureBuilder<TimeSlotList>(
                               future: controller.fetchTimeSlotByDoctorIdAndDate(
-                                  doctor.id, controller.appointmentDate.value),
+                                  widget.doctor.id,
+                                  controller.appointmentDate.value),
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return const Center(
@@ -238,11 +249,16 @@ class AppointmentScreen extends StatelessWidget {
             }
             CustomResponse customResponse = await StateManagerController
                 .stateManagerController
-                .bookAppointment(doctor, hospitalId);
+                .bookAppointment(widget.doctor, widget.hospitalId);
             if (customResponse.statusCode == 200) {
               StateManagerController.stateManagerController
                   .update(["time_slot"]);
-              ShowConfirmation(context, doctor);
+              ShowConfirmation(context, widget.doctor).whenComplete(() {
+                Future.delayed(
+                    const Duration(seconds: 10),
+                    (() => _notificationServices.sendNotification(
+                        widget.hospitalname, "Your appointment is confirmed.")));
+              });
             } else {
               Helperfunction.showToast(customResponse.message);
             }

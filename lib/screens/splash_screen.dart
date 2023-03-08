@@ -4,7 +4,7 @@ import 'package:sahayak_application/screens/login_screen.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 
-import '../utils/data/storage.dart';
+import '../utils/network/data/storage.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({super.key});

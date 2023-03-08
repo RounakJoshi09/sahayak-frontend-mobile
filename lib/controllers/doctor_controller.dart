@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sahayak_application/models/Doctor.dart';
 import 'package:http/http.dart' as http;
-import '../utils/connection/APIs.dart';
+import '../utils/network/connection/APIs.dart';
 
 class DoctorController {
   Future<DoctorList> fetchHospitalDoctors(String hospitalId) async {

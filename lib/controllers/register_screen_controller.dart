@@ -8,7 +8,7 @@ import 'package:sahayak_application/models/States.dart';
 import 'package:http/http.dart' as http;
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import '../models/City.dart';
-import '../utils/connection/APIs.dart';
+import '../utils/network/connection/APIs.dart';
 
 class RegisterScreenController extends GetxController {
   static RegisterScreenController get registerScreenController => Get.find();

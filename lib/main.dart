@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sahayak_application/screens/login_screen.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/screens/splash_screen.dart';
-import 'package:sahayak_application/utils/data/storage.dart';
+import 'package:sahayak_application/utils/network/data/storage.dart';
 import 'package:sahayak_application/screens/profile_screen.dart';
 
 void main() async {

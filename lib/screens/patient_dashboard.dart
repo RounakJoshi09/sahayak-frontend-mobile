@@ -8,8 +8,8 @@ import 'package:sahayak_application/screens/history_appointment_screen.dart';
 import 'package:sahayak_application/screens/navigation_bar_skeleton.dart';
 import 'package:sahayak_application/screens/profile_screen.dart';
 import 'package:sahayak_application/utils/TextStyle.dart';
-import 'package:sahayak_application/utils/connection/APIs.dart';
-import 'package:sahayak_application/utils/data/storage.dart';
+import 'package:sahayak_application/utils/network/connection/APIs.dart';
+import 'package:sahayak_application/utils/network/data/storage.dart';
 import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:sahayak_application/utils/widgets/custom_container.dart';
 import 'package:sahayak_application/utils/widgets/history_card_widget.dart';
@@ -97,7 +97,6 @@ class _PatientDashboardState extends State<PatientDashboard> {
               ),
               Expanded(
                 child: ListView(
-                  physics: ScrollPhysics(),
                   children: [
                     CustomContainer(
                       height: 180,
@@ -243,5 +242,3 @@ class _PatientDashboardState extends State<PatientDashboard> {
     _controller.dispose();
   }
 }
-
-enum _SelectedTab { home, appointment, reminder, profile }

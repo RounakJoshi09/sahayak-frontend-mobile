@@ -8,8 +8,8 @@ import 'package:sahayak_application/utils/widgets/custom_container.dart';
 import 'package:sahayak_application/utils/widgets/history_card_widget.dart';
 import 'package:http/http.dart' as http;
 
-import '../utils/connection/APIs.dart';
-import '../utils/data/storage.dart';
+import '../utils/network/connection/APIs.dart';
+import '../utils/network/data/storage.dart';
 
 class PresentAppointmentScreen extends StatelessWidget {
   PresentAppointmentScreen({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/models/Response.dart';
-import 'package:sahayak_application/utils/connection/APIs.dart';
-import 'package:sahayak_application/utils/data/storage.dart';
+import 'package:sahayak_application/utils/network/connection/APIs.dart';
+import 'package:sahayak_application/utils/network/data/storage.dart';
 import 'package:dio/dio.dart';
 
 enum MobileVerificationState {
@@ -76,11 +76,11 @@ class LoginController extends GetxController {
 
         var jsonData = response.data;
         debugPrint(jsonData.toString());
-        MyStorage.setFirstName(jsonData['firstName']);
-        MyStorage.setLastName(jsonData['lastName']);
-        MyStorage.setFullName(jsonData['firstName'] + jsonData['lastName']);
+        MyStorage.setFirstName(jsonData['first_name']);
+        MyStorage.setLastName(jsonData['last_name']);
+        MyStorage.setFullName(jsonData['first_name'] + jsonData['last_name']);
         MyStorage.setEmail(jsonData['email']);
-        MyStorage.setMobileNumber(jsonData['phoneNo']);
+        MyStorage.setMobileNumber(jsonData['phone_no']);
         MyStorage.setStateId(jsonData['stateId']);
         MyStorage.setCityId(jsonData['cityId']);
         MyStorage.setAge(jsonData['age']);

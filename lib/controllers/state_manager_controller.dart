@@ -11,8 +11,8 @@ import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:dio/dio.dart';
 
 import '../models/Response.dart';
-import '../utils/connection/APIs.dart';
-import '../utils/data/storage.dart';
+import '../utils/network/connection/APIs.dart';
+import '../utils/network/data/storage.dart';
 
 class StateManagerController extends GetxController {
   static StateManagerController get stateManagerController =>
