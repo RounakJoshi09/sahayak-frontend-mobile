@@ -82,9 +82,9 @@ class StateManagerController extends GetxController {
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         debugPrint(jsonData.toString());
-        debugPrint(jsonData['data'][0]['leave_days'].toString());
+        debugPrint(jsonData['data']['schedule'][0]['leave_days'].toString());
         return LeaveDaysList.fromJson(
-            jsonData['data'][0]['leave_days'] as List<dynamic>);
+            jsonData['data']['schedule'][0]['leave_days'] as List<dynamic>);
       } else {
         throw Exception('Failed to load');
       }
