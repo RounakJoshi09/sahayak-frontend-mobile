@@ -5,11 +5,6 @@ import 'package:sahayak_application/models/States.dart';
 import 'package:sahayak_application/utils/TextStyle.dart';
 
 Widget getStateDropdown(BuildContext context, List<States> stateList) {
-  RegisterScreenController.registerScreenController
-      .setState(stateList[0].stateName);
-  RegisterScreenController.registerScreenController
-      .setStateId(stateList[0].stateId);
-
   return Obx(
     () => Container(
       width: MediaQuery.of(context).size.width,
@@ -17,18 +12,30 @@ Widget getStateDropdown(BuildContext context, List<States> stateList) {
       child: DropdownButton(
         elevation: 0,
         isExpanded: true,
-        items: stateList.map((item) {
-          return DropdownMenuItem<String>(
-            value: item.stateName,
+        items: [
+          DropdownMenuItem<String>(
+            value: "Select State",
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                item.stateName.toUpperCase(),
+                "Select State",
                 style: subtitle2(color: Colors.grey),
               ),
             ),
-          );
-        }).toList(),
+          ),
+          ...stateList.map((item) {
+            return DropdownMenuItem<String>(
+              value: item.stateName,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  item.stateName.toUpperCase(),
+                  style: subtitle2(color: Colors.grey),
+                ),
+              ),
+            );
+          }).toList()
+        ],
         style: subtitle2(color: Colors.grey),
         onChanged: (value) {
           RegisterScreenController.registerScreenController.setState(value!);

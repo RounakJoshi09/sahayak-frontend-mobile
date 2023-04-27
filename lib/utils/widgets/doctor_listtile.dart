@@ -5,7 +5,7 @@ import 'package:sahayak_application/screens/appointment_screen.dart';
 
 import '../TextStyle.dart';
 
-Widget doctorListTile(Doctor doctor, String hospitalId) {
+Widget doctorListTile(Doctor doctor, String hospitalId, String hospitalName) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -50,7 +50,7 @@ Widget doctorListTile(Doctor doctor, String hospitalId) {
           ],
         ),
         onTap: () {
-          Get.to(AppointmentScreen(doctor, hospitalId));
+          Get.to(AppointmentScreen(doctor, hospitalId, hospitalName));
         },
       ),
     ),

@@ -5,11 +5,6 @@ import 'package:sahayak_application/models/City.dart';
 import 'package:sahayak_application/utils/TextStyle.dart';
 
 Widget getCityDropdown(BuildContext context, List<City> cityList) {
-  RegisterScreenController.registerScreenController
-      .setCity(cityList[0].cityName);
-  RegisterScreenController.registerScreenController
-      .setCityId(cityList[0].cityId);
-
   return Obx(
     () => Container(
       width: MediaQuery.of(context).size.width,
@@ -17,18 +12,30 @@ Widget getCityDropdown(BuildContext context, List<City> cityList) {
       child: DropdownButton(
         elevation: 0,
         isExpanded: true,
-        items: cityList.map((item) {
-          return DropdownMenuItem<String>(
-            value: item.cityName,
+        items: [
+          DropdownMenuItem<String>(
+            value: "Select City",
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                item.cityName.toUpperCase(),
+                "Select City",
                 style: subtitle2(color: Colors.grey),
               ),
             ),
-          );
-        }).toList(),
+          ),
+          ...cityList.map((item) {
+            return DropdownMenuItem<String>(
+              value: item.cityName,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  item.cityName.toUpperCase(),
+                  style: subtitle2(color: Colors.grey),
+                ),
+              ),
+            );
+          }).toList()
+        ],
         style: subtitle2(color: Colors.grey),
         onChanged: (value) {
           RegisterScreenController.registerScreenController.setCity(value!);

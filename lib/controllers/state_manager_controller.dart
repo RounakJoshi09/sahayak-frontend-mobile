@@ -11,15 +11,14 @@ import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import 'package:dio/dio.dart';
 
 import '../models/Response.dart';
-import '../utils/connection/APIs.dart';
-import '../utils/data/storage.dart';
-
+import '../utils/network/connection/APIs.dart';
+import '../utils/network/data/storage.dart';
 
 class StateManagerController extends GetxController {
   static StateManagerController get stateManagerController =>
       Get.find<StateManagerController>();
   late Rx<DateTime> appointmentDate;
-  RxInt index = 0.obs;
+  RxInt index = (-1).obs;
 
   @override
   void onInit() {
@@ -33,6 +32,7 @@ class StateManagerController extends GetxController {
   int timeSlotsCount = 1;
   String selectedSlotStart = "";
   String selectedSlotEnd = "";
+  String approximateTurnTime = "";
 
   void setSelectedSlotStart(String slotStart) {
     selectedSlotStart = slotStart;
@@ -82,9 +82,9 @@ class StateManagerController extends GetxController {
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         debugPrint(jsonData.toString());
-        debugPrint(jsonData['data'][0]['leave_days'].toString());
+        debugPrint(jsonData['data']['schedule'][0]['leave_days'].toString());
         return LeaveDaysList.fromJson(
-            jsonData['data'][0]['leave_days'] as List<dynamic>);
+            jsonData['data']['schedule'][0]['leave_days'] as List<dynamic>);
       } else {
         throw Exception('Failed to load');
       }
@@ -104,11 +104,12 @@ class StateManagerController extends GetxController {
       );
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
+        index.value = -1;
         var jsonData = jsonDecode(response.body);
         debugPrint(jsonData.toString());
         return TimeSlotList.fromJson(jsonData['data'] as List<dynamic>);
       } else {
-        Helperfunction.showToast("Appointments Slots Not Found");
+        Helperfunction.showToast(jsonDecode(response.body)['message']);
         return TimeSlotList([]);
       }
     } catch (e) {
@@ -128,13 +129,22 @@ class StateManagerController extends GetxController {
       "appointment_start_time": selectedSlotStart,
       "appointment_end_time": selectedSlotEnd,
       "patient_id": patientId,
+      "date_of_appointment":
+          Helperfunction.getDateString(appointmentDate.value),
       "doctor": {
         "full_name": doctor.fullName,
         "specialization": doctor.specialization,
         "education": doctor.education,
         "price": doctor.price
-      }
+      },
+      "patient": {
+        "patientName": MyStorage.readFullName,
+        "age": MyStorage.readAge,
+        "phoneNo": MyStorage.readMobileNumber
+      },
+      "approximate_turn_time": approximateTurnTime
     };
+    print(data);
     var dio = Dio();
     var response = await dio
         .post(

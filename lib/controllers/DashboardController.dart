@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/models/Hospital.dart';
 import 'package:http/http.dart' as http;
-import 'package:sahayak_application/utils/data/storage.dart';
-import '../utils/connection/APIs.dart';
+import 'package:sahayak_application/utils/network/data/storage.dart';
+import '../utils/network/connection/APIs.dart';
 
 class DashboardController extends GetxController {
   late String cityId;

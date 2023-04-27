@@ -1,20 +1,28 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_application/models/States.dart';
 import 'package:http/http.dart' as http;
+import 'package:sahayak_application/utils/helper/helper_functions.dart';
 import '../models/City.dart';
-import '../utils/connection/APIs.dart';
+import '../utils/network/connection/APIs.dart';
 
 class RegisterScreenController extends GetxController {
   static RegisterScreenController get registerScreenController => Get.find();
-
-  RxString selectedState = "".obs;
-  RxString selectedStateId = "".obs;
-  RxString selectedCity = "".obs;
-  RxString selectedCityId = "".obs;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  RxString selectedState = "Select State".obs;
+  RxString selectedStateId = "Select State".obs;
+  RxString selectedCity = "Select City".obs;
+  RxString selectedCityId = "Select City".obs;
   void setState(String state) {
     selectedState.value = state;
   }
@@ -94,22 +102,40 @@ class RegisterScreenController extends GetxController {
   Future<String> registerPatient(String firstName, String lastName, String age,
       String email, String mobileNumber, String password) async {
     try {
-      var response = await http.post(
-        Uri.parse(Sahayak.registerPatient()),
-        body: <String, String>{
-          "firstName": firstName,
-          "lastName": lastName,
-          "patientName": "$firstName $lastName",
-          "age": age,
-          "email": email,
-          "phoneNo": mobileNumber,
-          "password": password,
-        },
-      ).catchError((e) {
+      Map<String, dynamic> data = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "patientName": "$firstName $lastName",
+        "age": age,
+        "email": email,
+        "phoneNo": mobileNumber,
+        "password": password,
+        "cityId": selectedCityId.value,
+        "stateId": selectedStateId.value
+      };
+      print(data);
+      var dio = Dio();
+      var response = await dio
+          .post(
+        Sahayak.registerPatient(),
+        data: data,
+        options: Options(
+          headers: {
+            "Accept": "application/json",
+          },
+        ),
+      )
+          .catchError((e) {
+        Helperfunction.showToast("Something Went Wrong");
         debugPrint(e.toString());
       });
-
-      return response.body;
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var data = response.data;
+        return data['message'];
+      } else {
+        return "Something Went Wrong";
+      }
     } catch (e) {
       throw Exception(e.toString());
     }

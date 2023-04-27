@@ -53,7 +53,6 @@ class CalendarPage2 extends StatelessWidget {
     events: {},
   );
 
-
   late double cHeight;
 
   @override
@@ -107,6 +106,8 @@ class CalendarPage2 extends StatelessWidget {
                   }
                   StateManagerController.stateManagerController
                       .setAppointmentDate(selectedDate);
+                  StateManagerController.stateManagerController
+                      .update(["time_slot"]);
                 },
                 height: cHeight * 0.45,
                 weekendTextStyle: const TextStyle(

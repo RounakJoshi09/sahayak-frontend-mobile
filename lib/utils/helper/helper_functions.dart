@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sahayak_application/models/Response.dart';
+import 'package:sahayak_application/utils/network/data/storage.dart';
 
 class Helperfunction {
   double getHeight(BuildContext context) {
@@ -39,5 +41,28 @@ class Helperfunction {
     }
 
     return dateString;
+  }
+
+  static String getDateStringToPrint(DateTime date) {
+    String dateString = "";
+
+    if (date.day < 10) {
+      dateString += "0${date.day}-";
+    } else {
+      dateString += "${date.day}-";
+    }
+    if (date.month < 10) {
+      dateString += "0${date.month}-";
+    } else {
+      dateString += "${date.month}-";
+    }
+    dateString += "${date.year}";
+
+    return dateString;
+  }
+
+  Future<CustomResponse> logout() async {
+    MyStorage.eraseAll();
+    return CustomResponse(message: "Logged Out Successfully", statusCode: 200);
   }
 }

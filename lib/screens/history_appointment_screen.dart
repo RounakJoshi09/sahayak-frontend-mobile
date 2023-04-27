@@ -13,8 +13,8 @@ class HistoryAppointmentScreen extends StatefulWidget {
 class _HistoryAppointmentScreen extends State<HistoryAppointmentScreen>
     with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = <Tab>[
-    const Tab(text: 'Present History'),
-    const Tab(text: 'Past History'),
+    const Tab(text: 'Future Appointments'),
+    const Tab(text: 'Past Appointments'),
   ];
 
   late TabController _tabController;

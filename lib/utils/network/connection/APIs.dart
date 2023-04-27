@@ -38,4 +38,16 @@ class Sahayak {
   static String bookAppointment() {
     return "$base_url/api/appointments/appointment";
   }
+
+  static String upcomingAppointment(String patientId) {
+    return "$base_url/api/appointments/upcomingAppointment/$patientId";
+  }
+
+  static String futureAppointment(String patientId) {
+    return "$base_url/api/appointments/futureAppointments/$patientId";
+  }
+
+  static String pastAppointment(String patientId) {
+    return "$base_url/api/appointments/pastAppointments/$patientId";
+  }
 }
